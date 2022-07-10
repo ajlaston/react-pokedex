@@ -49,13 +49,7 @@
     color: #828282d2;
 }
 
-@media only screen and (max-width: 1000px) and (min-width: 760px) {
-    .pokemon-card {
-        width: 333px;
-    }
-}
-
-@media only screen and (min-width: 1000px) {
+@media only screen and (min-width: 760px) {
     
     .card-img {
         width: 160px;

@@ -37,9 +37,17 @@ function Home() {
         <div className="home">
 
             <div className="pokemon-logo-container">
-                <div className="logo-wrapper">
-                    <div className="pokemon-logo" style={{ backgroundImage: `url(${logo})` }}></div>
+
+                <div className="pokemon-logo-container-wrapper">
+                    <div className="logo-wrapper">
+                        <div className="pokemon-logo" style={{ backgroundImage: `url(${logo})` }}></div>
+                    </div>
+
+                    <div className="capture-btn-wrapper">
+                        <button><div className="pokeball" style={{ backgroundImage: `url(${pokeball})` }}></div> <p>Captured Pokemon</p></button>
+                    </div>
                 </div>
+
             </div>
 
 
@@ -58,7 +66,7 @@ function Home() {
                                 />
                             })
                         }
-                    
+
                     </div>
                     <div className="captured"></div>
                 </div>
