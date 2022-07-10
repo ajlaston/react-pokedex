@@ -1,0 +1,26 @@
+.loader {
+    height: 60vh;
+}
+
+.ball-wrapper {
+    height: 100%;
+    display: flex;
+    align-items: center;
+}
+
+
+.ball {
+    height: 40px;
+    width: 40px;
+    border-radius: 80px;
+    background-size: contain;
+    animation: load 1.8s infinite;
+    background-color: rgb(251, 100, 66);
+}
+
+@keyframes load {
+    50% {
+        transform: scale(0.6);
+        background-color: rgb(255, 255, 255);
+    }
+}
