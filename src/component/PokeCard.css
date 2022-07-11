@@ -6,6 +6,12 @@
     box-shadow: 0px 8px 16px 4px rgba(0, 0, 0, 0.05);
 }
 
+.card-btn {
+    background-color: transparent;
+    width: 171px;
+    border: none;
+}
+
 .card-wrapper {
     display: flex;
     flex-direction: column;
@@ -24,9 +30,8 @@
     width: 171px;
     height: 57px;
     background: #FFFFFF;
-    border-bottom-left-radius: 16px;
-    border-bottom-right-radius: 16px;
-    
+    border-bottom-left-radius: 15px;
+    border-bottom-right-radius: 15px;
 }
 
 .card-img {
@@ -40,7 +45,7 @@
     margin: 0;
     font-size: 13px;
     font-weight: bold;
-
+    color: black;
 }
 
 .card-type {
@@ -51,6 +56,10 @@
 
 @media only screen and (min-width: 760px) {
     
+    .card-btn {
+        width: 333px;
+    }
+
     .card-img {
         width: 160px;
         height: 160px;

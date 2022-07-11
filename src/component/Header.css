@@ -1,0 +1,141 @@
+.pokeball {
+    width: 40px;
+    height: 40px;
+    background-position: center;
+    background-size: contain;
+    background-repeat: no-repeat;
+    position: relative;
+    bottom: 1px;
+    right: 3px;
+    margin-right: 4px;
+
+}
+
+.pokemon-logo-container p{
+    margin: 0;
+    font-size: 20px;
+    color: white;
+    position: relative;
+    top: 7px;
+    font-weight: bold;
+}
+
+.pokemon-logo-container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+
+.pokemon-logo-container button{
+    display: flex;
+    height: 40px;
+    background-color: #EB5435;
+    border-radius: 20px;
+    border: none;
+}
+
+.logo-wrapper {
+    display: flex;
+    justify-content: center;
+    padding: 24px 0px
+}
+
+.capture-btn-wrapper {
+    display: flex;
+    align-items: center;
+    height: 100%;
+}
+
+@media screen and (max-width: 759px){
+    .capture-btn-wrapper {
+        display: none;
+    }
+}
+
+@media only screen and (min-width: 760px) and (max-width: 1031px) {
+
+
+    .pokemon-logo-container-wrapper {
+        display: flex;
+        width: 682px;
+        justify-content: space-between;
+    }
+
+    .pokemon-logo-container p{
+        margin: 0;
+        font-size: 20px;
+        color: white;
+        position: relative;
+        top: 7px;
+        font-weight: bold;
+    }
+
+    .pokeball {
+        width: 40px;
+        height: 40px;
+        background-position: center;
+        background-size: contain;
+        background-repeat: no-repeat;
+        position: relative;
+        bottom: 1px;
+        right: 3px;
+        margin-right: 4px;
+
+    }
+
+}
+
+@media only screen and (min-width: 1031px) and (max-width: 1383px){
+
+    .pokemon-logo-container-wrapper {
+        display: flex;
+        width: 1031px;
+        justify-content: space-between;
+    }
+
+    .captured {
+        min-width: 333px;
+        height: 600px;
+        background-color: rgb(157, 49, 167);
+        border-radius: 16px;
+        display: none;
+    }
+
+    .card-grid-container {
+        display: flex;
+        max-width: 1035px;
+    }
+
+    .card-grid {
+       min-width: 700px;
+       max-width: 1031px;
+    }
+
+}
+
+@media only screen and (min-width: 1384px) {
+
+    .pokemon-logo-container-wrapper {
+        display: flex;
+        width: 1384px;
+        justify-content: space-between;
+    }
+
+    .pokemon-logo-container button{
+        display: flex;
+        height: 40px;
+        background-color: red;
+        border-radius: 20px;
+        border: none;
+    }
+
+    .captured {
+        min-width: 333px;
+        height: 600px;
+        background-color: rgb(157, 49, 167);
+        border-radius: 16px;
+        display: none;
+    }
+
+}

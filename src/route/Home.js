@@ -1,17 +1,18 @@
 import React from "react";
 import PokeCard from "../component/PokeCard.js";
 import Loader from "../component/Loader.js";
+import Header from "../component/Header.js";
+import { useNavigate } from "react-router-dom";
 import DexApi from "../DexAPI.js";
-import logo from "../img/Pokédex_logo.png";
-import pokeball from "../img/pokeball.png"
 import "./Home.css";
 
-
+import pokeball from "../img/pokeball.png";
 
 function Home() {
 
     const [dexData, setDexData] = React.useState([]);
     const [loading, setLoading] = React.useState(false);
+    
 
     const loadDexData = () => {
         //setLoading passed as arg in getPokemonList() sets it to true
@@ -36,21 +37,8 @@ function Home() {
     return (
         <div className="home">
 
-            <div className="pokemon-logo-container">
-
-                <div className="pokemon-logo-container-wrapper">
-                    <div className="logo-wrapper">
-                        <div className="pokemon-logo" style={{ backgroundImage: `url(${logo})` }}></div>
-                    </div>
-
-                    <div className="capture-btn-wrapper">
-                        <button><div className="pokeball" style={{ backgroundImage: `url(${pokeball})` }}></div> <p>Captured Pokemon</p></button>
-                    </div>
-                </div>
-
-            </div>
-
-
+            <Header />
+            
             <div className="grid-wrapper">
 
                 <div className="card-grid-container">

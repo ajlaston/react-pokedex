@@ -1,11 +1,12 @@
 import React from "react";
 
-function Captured(){
 
-    return(
-        <div>
-            captured
-        </div>
+function Captured() {
+
+    return (
+            <div>
+                captured
+            </div>
     )
 }
 

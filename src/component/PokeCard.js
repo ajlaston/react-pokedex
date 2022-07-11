@@ -1,9 +1,12 @@
 import React from "react";
+import { Link, useNavigate } from "react-router-dom";
 import "./PokeCard.css";
 
 function PokeCard(props) {
 
-   const colors = {"rock":"#bbaa66","ghost":"#6666ba","steel":"#aaaabb","water":"#3399fe","grass":"#76cc55","psychic":"#ff5599","ice":"#65ccff","dark":"#775444","fairy":"#ee99ee","normal":"#aaaa9b","fighting":"#ba5544","flying":"#8799ff","poison":"#aa5599","ground":"#ddbb54","bug":"#a9bb22","fire":"#eb5435","electric":"#ffcc33","dragon":"#6666ba"} 
+    const navigate = useNavigate();
+
+    const colors = { "rock": "#bbaa66", "ghost": "#6666ba", "steel": "#aaaabb", "water": "#3399fe", "grass": "#76cc55", "psychic": "#ff5599", "ice": "#65ccff", "dark": "#775444", "fairy": "#ee99ee", "normal": "#aaaa9b", "fighting": "#ba5544", "flying": "#8799ff", "poison": "#aa5599", "ground": "#ddbb54", "bug": "#a9bb22", "fire": "#eb5435", "electric": "#ffcc33", "dragon": "#6666ba" }
 
     const setBackground = (type) => {
         const typeName = type[0].type.name;
@@ -66,26 +69,29 @@ function PokeCard(props) {
         return result;
     }
 
+    const handleCardClick = () => {
+        navigate(`/stats/${props.name}`);
+    }
+
     const color = setBackground(props.type);
     const type = parseType(props.type);
     const order = parseOrder(props.order);
     const name = parseName(props.name);
 
     return (
+        <div className="pokemon-card" style={{ backgroundColor: color }}>
+            <button className="card-btn" onClick={handleCardClick}>
+                <div className="card-wrapper">
 
-        <div className="pokemon-card" style={{backgroundColor : color}}>
+                    <div className="card-img" style={{ backgroundImage: `url(${props.sprite})` }}></div>
 
-            <div className="card-wrapper">
+                    <div className="card-details">
+                        <p className="card-name"> #{order} {name}</p>
+                        <p className="card-type">{type}</p>
+                    </div>
 
-                <div className="card-img" style={{ backgroundImage: `url(${props.sprite})` }}></div>
-
-                <div className="card-details">
-                    <p className="card-name"> #{order} {name}</p>
-                    <p className="card-type">{type}</p>
                 </div>
-
-            </div>
-
+            </button>
         </div>
 
     )

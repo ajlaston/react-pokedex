@@ -20,6 +20,15 @@ const DexApi = {
         })
 
         return Promise.all(mapped);
+    },
+
+    async getPokemon(name, setIsLoading){
+        setIsLoading(true)
+        const fetchPokemon = await fetch(`https://pokeapi.co/api/v2/pokemon/${name}`)
+        const data = await fetchPokemon.json();
+        const result =  data;
+    
+        return result;
     }
 }
 
