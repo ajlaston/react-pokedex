@@ -1,83 +1,118 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
+import DexApi from "./DexAPI";
 
 const PokemonContext = React.createContext();
 
 function PokeContextComponent(props) {
 
-    const [pokeDetails, setPokeDetails] = React.useState({});
+   
+
+    //state and helper functions (loadData)
+
+    //local storage
+
+    //pokemon detail state object for PokeDetails Component
+    const [fetchedData, setFetchedData] = React.useState(null);
+    const [detailData, setDetailData] = React.useState({
+        name: "",
+        order: "",
+        type: "",
+        level: "",
+        BackgroundColor: "",
+        sprite: "",
+        nickname: "",
+        date: ""
+    })
+
+    //states for CaptureForm Component
+    const [display, setDisplay] = React.useState("none");
+    const [captureFormData, setCaptureFormData] = React.useState({
+        nickname: "",
+        date: "",
+        level: ""
+    })
+
+    const [myPokemon, setMyPokemon] = React.useState([]);
 
     const app = {
-        colors: { "rock": "#bbaa66", "ghost": "#6666ba", "steel": "#aaaabb", "water": "#3399fe", "grass": "#76cc55", "psychic": "#ff5599", "ice": "#65ccff", "dark": "#775444", "fairy": "#ee99ee", "normal": "#aaaa9b", "fighting": "#ba5544", "flying": "#8799ff", "poison": "#aa5599", "ground": "#ddbb54", "bug": "#a9bb22", "fire": "#eb5435", "electric": "#ffcc33", "dragon": "#6666ba" },
 
-        card : {
-            setBackgroundColor(type) {
-                const typeName = type[0].type.name;
-                return app.colors[typeName];
-            },
-    
-            formatName(name){
-                const str = name.split("");
-        
-                let upper = true;
-        
-                const mappedString = str.map((char, index, array) => {
-                    if (upper) {
-                        upper = false;
-                        return char.toUpperCase();
-                    } else if (char === " ") {
-                        upper = true;
-                        return " ";
-                    } else {
-                        return char
-                    }
-                })
-        
-                const result = mappedString.join("").trim();
-                return result;
+        //detail component states and methods
+        details: {
+            detailData: detailData,
+            setDetailData,
+
+            fetchedData: fetchedData,
+            setFetchedData,
+        },
+
+        //CaptureForm state and Component
+        captureForm: {
+
+            display: display,
+            setDisplay,
+
+            formData: captureFormData,
+            setFormData: setCaptureFormData,
+
+            clearForm() {
+                this.setFormData({
+                    nickname: "",
+                    level: "",
+                    date: "",
+                });
             },
 
-            formatType(arr){
-                const typeArr = [];
-        
-                arr.forEach((item, index, array) => {
-                    const typeName = this.formatName(item.type.name);
-                    typeArr.push(typeName);
-        
-                    if (array[index + 1]) {
-                        typeArr.push('·')
-                    }
-                })
-        
-                const result = typeArr.join(" ").trim();
-        
-                return result;
-            },
-
-            formatOrder(num) {
-                const numArr = num.toString().split("");
-        
-                switch (numArr.length) {
-                    case 1:
-                        numArr.unshift('00');
-                        break;
-                    case 2:
-                        numArr.unshift('0');
-                        break;
-                    default:
-                        break;
+            toggleForm(value = null) {
+                if(value === "initial"){
+                    setDisplay(value);
+                } else if(value === "none"){
+                    setDisplay(value);
+                } else {
+                    setDisplay(prev => prev === "initial" ? "none" : "initial");
                 }
-        
-                const result = numArr.join("");
-                return result;
+                
+            },
+
+            capturePokemon(e) {
+                e.preventDefault();
+
+                const pokemon = {
+                    ...detailData,
+                    ...app.captureForm.formData,
+                    captured : true
+                }
+
+                setMyPokemon(prev =>{
+                    const res = [...prev, pokemon]
+                    return res;
+                });
+                setDetailData(pokemon);
+
+
+                app.captureForm.toggleForm();
+                app.captureForm.clearForm();
             }
         },
-        
 
-        details : {
-            pokeDetails : pokeDetails,
-            setPokeDetails,
+        //methods and properties for the Captured route
+        captured: {
+            myPokemon: myPokemon,
+            setMyPokemon,
         }
     }
+
+    React.useEffect(() => {
+        setMyPokemon(DexApi.storage.load());
+    }, [])
+
+    React.useEffect(()=>{
+
+        //only save if pokemon array has been loaded from storage and changes.
+        if(myPokemon.length > 0){
+            DexApi.storage.save(myPokemon);
+        }
+    }, [myPokemon]);
 
 
     return (

@@ -81,13 +81,15 @@ p {
     border-radius: 16px;
 }
 
-.capture-btn-container {
+
+/*  */
+.open-form-container {
     margin-top: 48px;
     display: flex;
     justify-content: center;
 }
 
-.capture-btn {
+.open-form-btn {
     width: 328px;
     height: 53px;
     border: none;
@@ -98,88 +100,30 @@ p {
     border-radius: 50px;
 }
 
-.pop-up-container {
-    position: absolute;
-    top: 0;
-    background-color: rgba(0, 0, 0, 0.523);
-    height: 100vh;
-    width: 100%;
-}
-
-.pop-up {
-    width: 328px;
-    height: 292px;
-    background-color: white;
-    border-radius: 10px;
-    padding-left: 16px;
-}
-
-.pop-up h2 {
-    margin: 0;
-    margin-top: 24px;
-    margin-bottom: 20px;
-    font-size: 22px;
-}
-
-.pop-up input:nth-child(2) {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    padding: 10px 20px 10px 10px;
-    gap: 10px;
-
-    width: 296px;
-    height: 39px;
-
-    border: 1px solid #828282;
-    border-radius: 5px;
-    margin-bottom: 8px
-}
-.pop-up input:nth-child(3) {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    padding: 10px 20px 10px 10px;
-    gap: 10px;
-
-    width: 296px;
-    height: 39px;
-
-    border: 1px solid #828282;
-    border-radius: 5px;
-    margin-bottom: 8px
-
-}
-.pop-up input:nth-child(4) {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    padding: 10px 20px 10px 10px;
-    gap: 10px;
-
-    width: 296px;
-    height: 39px;
-
-    border: 1px solid #828282;
-    border-radius: 5px;
-
-}
-
-.pop-up-btn {
-    margin-top: 20px;
-    width: 296px;
-    height: 45px;
-    background-color: #EB5435;
-    border-radius: 100px;
-    border: none;
-    text-align: center;
-    color: white;
-    font-size: 18px;
-}
-
-.pop-up-wrapper {
-    height: 100%;
+.capture-info-container {
     display: flex;
     justify-content: center;
-    align-items: center;
+}
+
+.capture-info {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 16px;
+    gap: 10px;
+    margin-top: 24px;
+    margin-bottom: 36px;
+    width: 326px;
+    height: 137px;
+    left: 16px;
+    top: 713px;
+
+    background: #FFFFFF;
+    box-shadow: 0px 8px 16px 4px rgba(0, 0, 0, 0.05);
+    border-radius: 16px;
+}
+
+.capture-info > h3, p {
+    margin: 0;
+    
 }

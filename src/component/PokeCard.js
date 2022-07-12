@@ -70,7 +70,7 @@ function PokeCard(props) {
     }
 
     const handleCardClick = () => {
-        navigate(`/stats/${props.name}`);
+        navigate(`/details/${props.name}`);
     }
 
     const color = setBackground(props.type);

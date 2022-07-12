@@ -1,14 +1,20 @@
-import React from "react";
+import React, { useCallback, useContext, useMemo } from "react";
 import PokeCard from "../component/PokeCard.js";
 import Loader from "../component/Loader.js";
 import Header from "../component/Header.js";
-import { useNavigate } from "react-router-dom";
 import DexApi from "../DexAPI.js";
 import "./Home.css";
 
 import pokeball from "../img/pokeball.png";
+import { PokemonContext } from "../PokeContext.js";
+import { useNavigate } from "react-router-dom";
 
 function Home() {
+
+    const navigate = useNavigate();
+
+    const ctx = useContext(PokemonContext);
+    const {setFetchedData} = ctx.details;
 
     const [dexData, setDexData] = React.useState([]);
     const [loading, setLoading] = React.useState(false);
@@ -22,12 +28,20 @@ function Home() {
         })
     }
 
+    const onLoad = () => {
+        setFetchedData(null);
+        loadDexData()
+    }
+
     const handleCapturedBtn = () => {
-        console.log("hello world");
+        navigate("/captured")
     }
 
     React.useEffect(() => {
-        loadDexData()
+        //resets the local storage for all pokemon
+        //DexApi.storage.reset();
+      
+       onLoad();
     }, [])
 
     React.useEffect(() => {

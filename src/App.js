@@ -1,7 +1,7 @@
 import './App.css';
 import { Route, Routes, Link, useLocation } from "react-router-dom";
 import Home from './route/Home';
-import PokeStats from './route/PokeStats';
+import Details from './route/Details';
 import Captured from './route/Captured';
 
 function App() {
@@ -17,8 +17,9 @@ function App() {
               //if the window is below 764px then the pokemon stats will be rendered within the "stats" route
               mobile &&
 
-              <Route path="/stats" element={<PokeStats />} >
-                <Route path=':name' element={<PokeStats />} />
+              <Route path="/details">
+                <Route path=':name'  element={<Details/>}/>
+                <Route path=':name/popup' element={<Details />}/>
               </Route>
             }
             <Route path='/captured' element={<Captured />} />
