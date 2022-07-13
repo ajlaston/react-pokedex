@@ -1,4 +1,4 @@
-import React, { useCallback, useContext, useMemo } from "react";
+import React, { useCallback, useContext, useMemo, useRef } from "react";
 import PokeCard from "../component/PokeCard.js";
 import Loader from "../component/Loader.js";
 import Header from "../component/Header.js";
@@ -19,6 +19,7 @@ function Home() {
     const { setFetchedData } = ctx.details;
     const { homeDetails } = ctx.home;
     const {setDisplay} = ctx.captureForm;
+    const [page, setPage] = React.useState(1);
 
     const [dexData, setDexData] = React.useState([]);
     const [loading, setLoading] = React.useState(false);
@@ -42,10 +43,24 @@ function Home() {
         navigate("/captured");
     }
 
+    const handleScroll = () => {
+        if(window.innerHeight + document.documentElement.scrollTop  === document.documentElement.offsetHeight){
+            // DexApi.getPokemonList(setLoading).then(res=>{
+            //     setDexData(prev=>{
+            //         return [...prev, ...res]
+            //     });
+            //     setLoading(false);
+            // })
+            console.log("hii")
+        }
+    }
+
+    window.onscroll = () => handleScroll();
+
     React.useEffect(() => {
         //resets the local storage for all pokemon
         //DexApi.storage.reset();
-
+        
         onLoad();
     }, [])
 
@@ -64,13 +79,26 @@ function Home() {
                     <div className="card-grid">
                         {loading ? <Loader /> :
                             dexData.map((pokemon, index) => {
-                                return <PokeCard
+                                if(index === dexData.length -1){
+                                    return <PokeCard
+                                    sprite={pokemon.sprites.other["official-artwork"].front_default}
+                                    name={pokemon.species.name}
+                                    order={pokemon.order}
+                                    type={pokemon.types}
+                                    key={pokemon.order}
+                                    page={page}
+                                />
+                                } else {
+                                    return <PokeCard
                                     sprite={pokemon.sprites.other["official-artwork"].front_default}
                                     name={pokemon.species.name}
                                     order={pokemon.order}
                                     type={pokemon.types}
                                     key={pokemon.order}
                                 />
+                                }
+
+                               
                             })
                         }
 

@@ -49,7 +49,7 @@ function CaptureForm() {
                             onChange={handleChange}
                             value={formData.nickname}
                             placeholder="Nickname"
-                            required
+                            
                         />
 
                         <input

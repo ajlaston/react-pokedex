@@ -11,6 +11,10 @@
     background-color: #FAFAFA;
 }
 
+.message {
+    text-align: center;
+}
+
 .capture-container-web {
     display: none;
 }

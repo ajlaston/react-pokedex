@@ -95,13 +95,17 @@ function PokeContextComponent(props) {
                     captured : true
                 }
 
+                if(pokemon.nickname === ""){
+                    pokemon.nickname = "None";
+                }
+
                 setMyPokemon(prev =>{
                     const res = [...prev, pokemon]
                     return res;
                 });
                 setDetailData(pokemon);
 
-
+                document.body.style.overflow = "initial";
                 app.captureForm.toggleForm();
                 app.captureForm.clearForm();
             }

@@ -13,7 +13,7 @@ function Captured() {
 
     const generateCards = myPokemon.map((pokemon, index) => {
         return <li key={index}><CaptureCard
-            
+
             name={pokemon.name}
             nickname={pokemon.nickname}
             date={pokemon.date}
@@ -37,11 +37,17 @@ function Captured() {
                     <h1>Captured Pokemon</h1>
                 </div>
 
-                <div className="my-pokemon-container">
-                    <ul className="my-pokemon-wrapper">
-                        {generateCards}
-                    </ul>
-                </div>
+                {
+                    myPokemon.length === 0 ?
+                        <h3 className="message">No Pokemon Have Been Captured</h3>
+                        :
+                        <div className="my-pokemon-container">
+                            <ul className="my-pokemon-wrapper">
+                                {generateCards}
+                            </ul>
+                        </div>
+                }
+
             </div>
 
             <div className="capture-container-web">
@@ -59,11 +65,21 @@ function Captured() {
                             </div>
                         </div>
 
-                        <div className="capture-list-container">
-                            <ul className="capture-list-ul-web">
-                                {generateCards}
-                            </ul>
-                        </div>
+                        {
+                            myPokemon.length === 0 ?
+
+                                <h1 className="message">No Pokemon have Been Captured</h1>
+
+                                :
+
+                                <div className="capture-list-container">
+                                    <ul className="capture-list-ul-web">
+                                        {generateCards}
+                                    </ul>
+                                </div>
+                        }
+
+
                     </div>
 
                 </div>
