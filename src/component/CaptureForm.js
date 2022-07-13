@@ -26,12 +26,17 @@ function CaptureForm() {
     }
 
     React.useEffect(() => {
-        console.log(myPokemon);
-    }, [myPokemon])
+        if(display !== "none"){
+            document.body.style.overflow = "hidden";
+        } else {
+            document.body.style.overflow = "initial";
+        }
+        
+    }, [display])
 
     return (
         <div className="pop-up-container" style={{ display: display }}>
-            <div className="pop-up-wrapper">
+            <div className="pop-up-wrapper" onClick={closeForm}>
 
                 <div className="pop-up">
                     <h2>Capturing {detailData.name}</h2>

@@ -174,7 +174,10 @@ function Details() {
                                     <button className="open-form-btn" onClick={openForm}>Capture</button>
                                 </div>
 
-                                <CaptureForm />
+                                { location.pathname !== "/" &&
+                                    <CaptureForm />
+
+                                }
 
 
                             </div>

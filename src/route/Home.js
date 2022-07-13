@@ -2,6 +2,7 @@ import React, { useCallback, useContext, useMemo } from "react";
 import PokeCard from "../component/PokeCard.js";
 import Loader from "../component/Loader.js";
 import Header from "../component/Header.js";
+import CaptureForm from "../component/CaptureForm.js";
 import DexApi from "../DexAPI.js";
 import "./Home.css";
 
@@ -17,6 +18,7 @@ function Home() {
     const ctx = useContext(PokemonContext);
     const { setFetchedData } = ctx.details;
     const { homeDetails } = ctx.home;
+    const {setDisplay} = ctx.captureForm;
 
     const [dexData, setDexData] = React.useState([]);
     const [loading, setLoading] = React.useState(false);
@@ -31,6 +33,7 @@ function Home() {
     }
 
     const onLoad = () => {
+        setDisplay("none")
         setFetchedData(null);
         loadDexData()
     }
@@ -80,7 +83,7 @@ function Home() {
                             <Details />
                         </div>
                     }
-                    
+
                 </div>
 
 
@@ -89,6 +92,8 @@ function Home() {
             {
                 !loading && <button className="pokeball-btn" onClick={handleCapturedBtn}><img src={pokeball} alt="pokeball-btn" /></button>
             }
+
+            <CaptureForm />
 
 
         </div>
