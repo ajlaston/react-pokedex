@@ -24,11 +24,12 @@ function Details() {
     const location = useLocation();
 
     const pokemon = myPokemon.find(pokemon => {
-        const pokemonName = pokemon.name.toLowerCase();
-        
-        if(pokemonName === name){
-            return pokemon;
-        }
+        if(pokemon.name){
+            const pokemonName = pokemon.name.toLowerCase();
+            if(pokemonName === name){
+                return pokemon;
+            }
+        } 
     });
 
     const loadData = () => {
