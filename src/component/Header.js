@@ -4,7 +4,7 @@ import pokeball from "../img/pokeball.png"
 import { useNavigate } from "react-router-dom";
 import "./Header.css";
 
-function Header(){
+function Header(props){
 
     const navigate = useNavigate();
     const handleCaptureBtn = () => {  
@@ -19,7 +19,7 @@ function Header(){
                 <div className="pokemon-logo" style={{ backgroundImage: `url(${logo})` }}></div>
             </div>
 
-            <div className="capture-btn-wrapper">
+            <div className="capture-btn-wrapper" style={{display : props.none}}>
 
                 <button onClick={handleCaptureBtn}>
                     <div className="pokeball" style={{ backgroundImage: `url(${pokeball})` }}></div> 
@@ -31,6 +31,10 @@ function Header(){
 
     </div>
     )
+}
+
+Header.defaultProps = {
+    display : "flex"
 }
 
 export default Header;

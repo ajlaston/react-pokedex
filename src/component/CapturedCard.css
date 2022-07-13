@@ -1,10 +1,14 @@
-.capture-card-container {
+.capture-card-container-mb {
     width: 328px;
     height: 70px;
     margin-bottom: 16px;
     border-radius: 17px;
     box-shadow: 0px 8px 16px 4px rgba(0, 0, 0, 0.05);
     display: flex;
+}
+
+.capture-card-container-web {
+    display: none;
 }
 
 .capture-card-image {
@@ -49,4 +53,235 @@
     font-size: 12px;
     line-height: 16px;
     color: #828282;
+}
+
+@media only screen and (min-width: 760px) and (max-width: 1031px){
+    .capture-card-container-mb {
+        width: 100%;
+        height: 100px;
+        margin-bottom: 16px;
+        border-radius: 17px;
+        box-shadow: 0px 8px 16px 4px rgba(0, 0, 0, 0.05);
+        display: flex;
+    }
+
+    .captured-card-details {
+        /* width: 600px; */
+        height: 100px;
+        background-color: white;
+        border-radius: 0px 16px 16px 0px;
+        padding-left: 16px;
+        padding-top: 0px;
+        display: flex;
+        gap: 3px;
+        flex: 1 1 auto;
+        align-items: center;
+    }
+
+    .capture-card-image {
+        border-radius: 16px 0px 0px 16px;
+        width: 100px;
+        height: 100px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .pokemon-sprite {
+        width: 80px;
+        height: 80px;
+        background-size: contain;
+    }
+
+    .captured-card-details p:nth-child(1) {
+        font-weight: 700;
+        font-size: 18px;
+        line-height: 20px;
+    }
+    .captured-card-details p:nth-child(2) {
+        font-weight: 300;
+        font-size: 17px;
+        line-height: 20px;
+        color: #828282;
+    }
+    .captured-card-details p:nth-child(3) {
+        font-weight: 300;
+        font-size: 17px;
+        line-height: 20px;
+        color: #828282;
+    }
+}
+
+@media only screen and (min-width: 1031px) and (max-width: 1384px){
+    .capture-card-container-mb {
+        display: none;
+    }
+
+    .capture-card-container-web {
+        display: flex;
+        height: 100px;
+
+        width: 100%;
+        margin-bottom: 26px;
+    }
+
+    .capture-image-container-web {
+        width: 100px;
+        height: 100px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: 16px;
+    }
+
+    .capture-sprite-web {
+        width: 80px;
+        height: 80px;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: contain;
+       
+    }
+
+    .capture-detail-web {
+        display: flex;
+        align-items: center;
+        width: 270px;
+    }
+
+    .capture-name-web {
+        margin-left: 24px;
+    }
+
+    .capture-name-web h3{
+        margin: 0;
+    }
+
+    .capture-name-web h3:nth-child(2){
+        font-weight: 500;
+        color: #828282;
+    }
+
+    .nickname-container-web {
+        display: flex;
+        align-items: center;
+        width: 200px;
+    }
+
+    .nickname-container-web h3{ 
+        margin: 0;
+        font-weight: 500;
+    }
+
+    .date-container-web {
+        display: flex;
+        align-items: center;
+        width: 260px;
+    }
+
+    .date-container-web h3{
+        margin: 0;
+        font-weight: 500;
+    }
+
+    .level-container-web {
+        display: flex;
+        align-items: center;
+    }
+
+    .level-container-web h3{
+        margin: 0;
+        font-weight: 500;
+        text-align: center;
+    }
+
+}
+
+@media only screen and (min-width: 1384px) {
+    .capture-card-container-mb {
+        display: none;
+    }
+
+    .capture-card-container-web {
+        display: flex;
+        height: 116px;
+        width: 100%;
+        margin-bottom: 26px;
+    }
+
+    .capture-image-container-web {
+        width: 116px;
+        height: 116px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: 16px;
+    }
+
+    .capture-sprite-web {
+        width: 100px;
+        height: 100px;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: contain;
+       
+    }
+
+    .capture-detail-web {
+        display: flex;
+        align-items: center;
+        width: 380px;
+    }
+
+    .capture-name-web {
+        margin-left: 24px;
+    }
+
+    .capture-name-web h3{
+        margin: 0;
+        font-size: 28px;
+    }
+
+    .capture-name-web h3:nth-child(2){
+        font-weight: 500;
+        font-size: 24px;
+        color: #828282;
+    }
+
+    .nickname-container-web {
+        display: flex;
+        align-items: center;
+        width: 290px;
+    }
+
+    .nickname-container-web h3{ 
+        margin: 0;
+        font-size: 28px;
+        font-weight: 500;
+    }
+
+    .date-container-web {
+        display: flex;
+        align-items: center;
+        width: 410px;
+    }
+
+    .date-container-web h3{
+        margin: 0;
+        font-size: 28px;
+        font-weight: 500;
+    }
+
+    .level-container-web {
+        display: flex;
+        align-items: center;
+    }
+
+    .level-container-web h3{
+        margin: 0;
+        font-weight: 500;
+        font-size: 28px;
+        text-align: center;
+    }
+
 }
