@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useRef } from "react";
 import "./Details.css";
 import CaptureForm from "../component/CaptureForm";
 import Loader from "../component/Loader";
@@ -18,9 +18,11 @@ function Details() {
     const { query, homeDetails, setHomeDetails } = ctx.home;
 
     const [borderRadius, setBorderRadius] = React.useState("16px");
+    const [imgBorderRadius, setImgBorderRadius] = React.useState("0");
     const [loading, setLoading] = React.useState(true);
     const { name } = useParams();
     const location = useLocation();
+    const imgBox = useRef();
 
     const pokemon = myPokemon.find(pokemon => pokemon.name.toLowerCase() === name);
 
@@ -89,8 +91,11 @@ function Details() {
         if(location.pathname !== "/"){
             onLoad();
             setBorderRadius("0");
+            setImgBorderRadius("0");
+            
         } else {
-            setBorderRadius("16px")
+            setBorderRadius("16px");
+            setImgBorderRadius("16px 16px 0px 0px");
         }
     }, [])
 
@@ -121,7 +126,7 @@ function Details() {
                 :
 
                 <div className="poke-details" style={{borderRadius : borderRadius}}>
-                    <div className="img-box" style={{ backgroundColor: detailData.color }}>
+                    <div className="img-box" style={{ backgroundColor: detailData.color, borderRadius : imgBorderRadius }} >
                         <div className="img-box-content">
                             <div className="pokemon-img-wrapper">
                                 <div className="pokemon-img" style={{ backgroundImage: `url(${detailData.sprite})` }}></div>

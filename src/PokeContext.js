@@ -68,7 +68,7 @@ function PokeContextComponent(props) {
             setFormData: setCaptureFormData,
 
             clearForm() {
-                this.setFormData({
+                setCaptureFormData({
                     nickname: "",
                     level: "",
                     date: "",

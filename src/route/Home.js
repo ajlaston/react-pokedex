@@ -73,14 +73,13 @@ function Home() {
                     {loading ? <Loader /> :
                         <div className="card-grid">
                             {dexData.length > 0 && dexData.map((pokemon, index) => {
-                             
-                                    return <PokeCard
-                                        sprite={pokemon.sprites.other["official-artwork"].front_default}
-                                        name={pokemon.species.name}
-                                        order={pokemon.order}
-                                        type={pokemon.types}
-                                        key={pokemon.order}
-                                    />
+                                return <PokeCard
+                                    sprite={pokemon.sprites.other["official-artwork"].front_default}
+                                    name={pokemon.species.name}
+                                    order={pokemon.order}
+                                    type={pokemon.types}
+                                    key={pokemon.order}
+                                />
                             })}
                         </div>
                     }

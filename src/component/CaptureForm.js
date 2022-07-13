@@ -6,7 +6,7 @@ import DexApi from "../DexAPI";
 function CaptureForm() {
 
     const ctx = React.useContext(PokemonContext);
-    const { formData, setFormData, display, toggleForm, handleSubmit, capturePokemon } = ctx.captureForm;
+    const { formData, setFormData, display, toggleForm, clearForm, capturePokemon } = ctx.captureForm;
     const { detailData } = ctx.details;
     const { myPokemon, setMyPokemon } = ctx.captured;
 
@@ -21,7 +21,8 @@ function CaptureForm() {
     //if you click outside of form it will close the form
     const closeForm = (e) => {
         if (e.target.className === "pop-up-wrapper") {
-            toggleForm();
+            clearForm();
+            toggleForm();  
         }
     }
 
