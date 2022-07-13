@@ -3,8 +3,11 @@ import logo from "../img/Pokédex_logo.png";
 import pokeball from "../img/pokeball.png"
 import { useNavigate } from "react-router-dom";
 import "./Header.css";
+import { PokemonContext } from "../PokeContext";
 
 function Header(props){
+
+    const ctx = React.useContext(PokemonContext);
 
     const navigate = useNavigate();
     const handleCaptureBtn = () => {  

@@ -96,7 +96,7 @@ function PokeCard(props) {
                     <div className="card-img" style={{ backgroundImage: `url(${props.sprite})` }}></div>
 
                     <div className="card-details">
-                        <p className="card-name"> #{order} {name}</p>
+                        <p className="card-name"> {order} {name}</p>
                         <p className="card-type">{type}</p>
                     </div>
 

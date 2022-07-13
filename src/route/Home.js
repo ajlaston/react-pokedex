@@ -1,4 +1,4 @@
-import React, { useCallback, useContext, useMemo, useRef } from "react";
+import React, { useContext } from "react";
 import PokeCard from "../component/PokeCard.js";
 import Loader from "../component/Loader.js";
 import Header from "../component/Header.js";
@@ -11,8 +11,6 @@ import { PokemonContext } from "../PokeContext.js";
 import { useNavigate } from "react-router-dom";
 import Details from "./Details.js";
 
-const pageNumber = 1;
-
 function Home() {
 
     const navigate = useNavigate();
@@ -22,10 +20,10 @@ function Home() {
     const { homeDetails } = ctx.home;
     const { setDisplay } = ctx.captureForm;
 
-    const [page, setPage] = React.useState(pageNumber);
+    const [page, setPage] = React.useState(1);
     const [dexData, setDexData] = React.useState([]);
 
-    const [loading, setLoading] = React.useState(false);
+    const [loading, setLoading] = React.useState(true);
 
     const fetchDexData = () => {
         DexApi.getPokemonList(setLoading, false, page).then(res => {
@@ -36,6 +34,7 @@ function Home() {
     const onLoad = () => {
         setDisplay("none")
         setFetchedData(null);
+        setLoading(false)
     }
 
     const handleCapturedBtn = () => {
@@ -51,13 +50,15 @@ function Home() {
     window.onscroll = () => handleScroll();
 
     React.useEffect(() => {
+        //the code commented below resets the local storage for all pokemon
+        //DexApi.storage.reset();
+
         onLoad();
     }, [])
 
 
     React.useEffect(() => {
-        //resets the local storage for all pokemon
-        //DexApi.storage.reset();
+        
         fetchDexData();
     }, [page])
 
@@ -70,7 +71,7 @@ function Home() {
 
                 <div className="card-grid-container">
 
-                    {loading ? <Loader /> :
+                    {loading === true ? <Loader /> :
                         <div className="card-grid">
                             {dexData.length > 0 && dexData.map((pokemon, index) => {
                                 return <PokeCard

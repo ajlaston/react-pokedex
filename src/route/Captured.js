@@ -8,8 +8,10 @@ import Header from "../component/Header";
 function Captured() {
 
     const ctx = React.useContext(PokemonContext);
-    const { myPokemon } = ctx.captured;
+
     //context my pokemon array
+    const { myPokemon } = ctx.captured;
+    
 
     const generateCards = myPokemon.map((pokemon, index) => {
         return <li key={index}><CaptureCard
@@ -24,10 +26,6 @@ function Captured() {
             types={pokemon.types}
         /></li>
     })
-
-    React.useEffect(() => {
-        console.log("myMon", myPokemon,)
-    }, [])
 
     return (
         <div className="my-pokemon">

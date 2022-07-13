@@ -12,17 +12,16 @@ function Details() {
     //fetchedData && DetailData
     const ctx = React.useContext(PokemonContext);
 
-    const { detailData, setDetailData, setFetchedData, fetchedData } = ctx.details;
+    const { detailData, setDetailData, setFetchedData, fetchedData, detailOpen, setDetailOpen } = ctx.details;
     const { toggleForm, setDisplay } = ctx.captureForm;
     const { myPokemon } = ctx.captured;
-    const { query, homeDetails, setHomeDetails } = ctx.home;
+    const { query } = ctx.home;
 
     const [borderRadius, setBorderRadius] = React.useState("16px");
     const [imgBorderRadius, setImgBorderRadius] = React.useState("0");
     const [loading, setLoading] = React.useState(true);
     const { name } = useParams();
     const location = useLocation();
-    const imgBox = useRef();
 
     const pokemon = myPokemon.find(pokemon => pokemon.name.toLowerCase() === name);
 
@@ -37,7 +36,7 @@ function Details() {
     }
 
     const queryData = () => {
-
+        setLoading(true)
         const pokemon = myPokemon.find(pokemon => pokemon.name.toLowerCase() === query);
         if (!pokemon) {
             DexApi.getPokemon(query, setLoading).then(res => {
@@ -80,6 +79,7 @@ function Details() {
 
     const onLoad = () => {
         setDisplay("none");
+        setDetailOpen(true);
         loadData();
     }
 
@@ -94,8 +94,8 @@ function Details() {
             setImgBorderRadius("0");
             
         } else {
-            setBorderRadius("16px");
-            setImgBorderRadius("16px 16px 0px 0px");
+            setBorderRadius("38px 38px 16px 16px");
+            setImgBorderRadius("38px 38px 0px 0px");
         }
     }, [])
 
