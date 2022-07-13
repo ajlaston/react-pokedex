@@ -27,7 +27,7 @@
 }
 
 
-.pokemon-logo-container button{
+.pokemon-logo-container button {
     display: flex;
     height: 40px;
     background-color: #EB5435;
@@ -125,7 +125,6 @@
     .pokemon-logo-container button{
         display: flex;
         height: 40px;
-        background-color: red;
         border-radius: 20px;
         border: none;
     }

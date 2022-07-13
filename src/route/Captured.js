@@ -19,6 +19,8 @@ function Captured() {
             sprite={pokemon.sprite}
             level={pokemon.level}
             color={pokemon.color}
+            order={pokemon.order}
+            types={pokemon.types}
         />
     })
 
@@ -28,15 +30,19 @@ function Captured() {
 
     return (
         <div className="my-pokemon">
-            <div className="cap-title-container">
-                <h1>Captured Pokemon</h1>
-            </div>
 
-            <div className="my-pokemon-container">
-                <div className="my-pokemon-wrapper">
-                    {generateCards}
+            <div className="capture-container-mb">
+                <div className="cap-title-container">
+                    <h1>Captured Pokemon</h1>
+                </div>
+
+                <div className="my-pokemon-container">
+                    <div className="my-pokemon-wrapper">
+                        {generateCards}
+                    </div>
                 </div>
             </div>
+
         </div>
     )
 }

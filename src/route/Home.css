@@ -48,40 +48,11 @@
     image-rendering: high-quality;
 }
 
-@media screen and (max-width: 759px){
+@media screen and (max-width: 760px){
     
 }
 
 @media only screen and (min-width: 760px) and (max-width: 1031px) {
-
-    /* .pokemon-logo-container {
-        width: 100%;
-        display: flex;
-        justify-content: center;
-    } */
-
-    .pokemon-logo-container-wrapper {
-        display: flex;
-        width: 682px;
-        justify-content: space-between;
-    }
-
-    .pokemon-logo-container button{
-        display: flex;
-        height: 40px;
-        background-color: red;
-        border-radius: 20px;
-        border: none;
-    }
-
-    .pokemon-logo-container p{
-        margin: 0;
-        font-size: 20px;
-        color: white;
-        position: relative;
-        top: 7px;
-        font-weight: bold;
-    }
 
     .pokeball {
         width: 40px;
@@ -93,7 +64,6 @@
         bottom: 1px;
         right: 3px;
         margin-right: 4px;
-
     }
 
     .pokeball-btn {
@@ -144,7 +114,7 @@
 
 }
 
-@media only screen and (min-width: 1384px) {
+@media only screen and (min-width: 1383px) {
 
     .pokeball-btn {
         display: none;

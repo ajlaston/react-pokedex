@@ -75,4 +75,12 @@
         width: 333px;
         height: 89px;
     }
+
+    .card-name {
+        font-size: 28px;
+    }
+
+    .card-type {
+        font-size: 24px;
+    }
 }
