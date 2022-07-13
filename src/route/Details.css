@@ -1,14 +1,17 @@
 .img-box {
     height: 275px;
+    min-width: 333px;
     width: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
+    border-radius: inherit;
 }
 
 .img-box-content {
     display: flex;
     flex-direction: column;
+    
 }
 
 .pokemon-img-wrapper {
@@ -42,6 +45,11 @@ p {
     display: flex;
     justify-content: center;
     height: fit-content;
+    
+}
+
+.stat-wrapper {
+    background-color: #FAFAFA;
 }
 
 .about {
@@ -98,6 +106,7 @@ p {
     font-size: 18px;
     font-weight: bold;
     border-radius: 50px;
+    margin-bottom: 20px;
 }
 
 .capture-info-container {
@@ -126,4 +135,10 @@ p {
 .capture-info > h3, p {
     margin: 0;
     
+}
+
+@media screen and (min-width: 1031px){
+    .img-box {
+        border-radius: 16px 16px 0px 0px;
+    }
 }

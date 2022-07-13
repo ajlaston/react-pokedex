@@ -2,11 +2,19 @@
     height: 100%;
     display: flex;
     flex-direction: column;
+    background-color: #FAFAFA;
 }
 
 .captured {
     position: sticky;
     top: 16px;
+    display: flex;
+    justify-content: center;
+    min-width: 333px;
+    height: fit-content;
+    background-color: white;
+    border-radius: 16px;
+    box-shadow: 0px 0px 16px rgba(0, 0, 0, 0.3);
 }
 
 .pokemon-logo {
@@ -44,13 +52,15 @@
     box-shadow: 0px 0px 8px 4px rgba(103, 103, 103, 0.615);
 }
 
-.pokeball-btn > img {
+.pokeball-btn>img {
     width: 100%;
     image-rendering: high-quality;
 }
 
-@media screen and (max-width: 760px){
-    
+@media screen and (max-width: 760px) {
+    .captured {
+        display: none;
+    }
 }
 
 @media only screen and (min-width: 760px) and (max-width: 1031px) {
@@ -68,14 +78,6 @@
     }
 
     .pokeball-btn {
-       display: none;
-    }
-
-    .captured {
-        min-width: 333px;
-        height: 600px;
-        background-color: rgb(157, 49, 167);
-        border-radius: 16px;
         display: none;
     }
 
@@ -85,21 +87,17 @@
     }
 
     .card-grid {
-      max-width: 682px;
-    }
-}
-
-@media only screen and (min-width: 1031px) and (max-width: 1383px){
-
-    .pokeball-btn {
-        display: none;
+        max-width: 682px;
     }
 
     .captured {
-        min-width: 333px;
-        height: 600px;
-        background-color: rgb(157, 49, 167);
-        border-radius: 16px;
+        display: none;
+    }
+}
+
+@media only screen and (min-width: 1031px) and (max-width: 1383px) {
+
+    .pokeball-btn {
         display: none;
     }
 
@@ -109,8 +107,8 @@
     }
 
     .card-grid {
-       min-width: 700px;
-       max-width: 1031px;
+        min-width: 700px;
+        max-width: 1031px;
     }
 
 }
@@ -121,23 +119,14 @@
         display: none;
     }
 
-    .captured {
-        min-width: 333px;
-        height: 600px;
-        background-color: rgb(157, 49, 167);
-        border-radius: 16px;
-        display: none;
-    }
-
     .card-grid-container {
         display: flex;
         max-width: 1381px;
-        
+
     }
 
     .card-grid {
-       min-width: 1049px;
-       max-width: 1381px;
+        min-width: 1049px;
+        max-width: 1381px;
     }
 }
-

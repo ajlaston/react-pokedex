@@ -8,17 +8,19 @@ import "./Home.css";
 import pokeball from "../img/pokeball.png";
 import { PokemonContext } from "../PokeContext.js";
 import { useNavigate } from "react-router-dom";
+import Details from "./Details.js";
 
 function Home() {
 
     const navigate = useNavigate();
 
     const ctx = useContext(PokemonContext);
-    const {setFetchedData} = ctx.details;
+    const { setFetchedData } = ctx.details;
+    const { homeDetails } = ctx.home;
 
     const [dexData, setDexData] = React.useState([]);
     const [loading, setLoading] = React.useState(false);
-    
+
 
     const loadDexData = () => {
         //setLoading passed as arg in getPokemonList() sets it to true
@@ -34,25 +36,25 @@ function Home() {
     }
 
     const handleCapturedBtn = () => {
-        navigate("/captured")
+        navigate("/captured");
     }
 
     React.useEffect(() => {
         //resets the local storage for all pokemon
         //DexApi.storage.reset();
-      
-       onLoad();
+
+        onLoad();
     }, [])
 
     React.useEffect(() => {
-        console.log(dexData)
-    }, [dexData])
+        console.log("jjj")
+    }, [homeDetails])
 
     return (
         <div className="home">
 
             <Header />
-            
+
             <div className="grid-wrapper">
 
                 <div className="card-grid-container">
@@ -70,7 +72,15 @@ function Home() {
                         }
 
                     </div>
-                    <div className="captured"></div>
+
+                    {
+                        homeDetails &&
+
+                        <div className="captured">
+                            <Details />
+                        </div>
+                    }
+                    
                 </div>
 
 

@@ -12,6 +12,10 @@ function PokeContextComponent(props) {
 
     //local storage
 
+    //home component toggle detail component
+    const [homeDetails, setHomeDetails] = React.useState(false)
+    const [query, setQuery] = React.useState("");
+
     //pokemon detail state object for PokeDetails Component
     const [fetchedData, setFetchedData] = React.useState(null);
     const [detailData, setDetailData] = React.useState({
@@ -36,6 +40,14 @@ function PokeContextComponent(props) {
     const [myPokemon, setMyPokemon] = React.useState([]);
 
     const app = {
+
+        home : {
+            homeDetails : homeDetails,
+            setHomeDetails,
+
+            query : query,
+            setQuery
+        },
 
         //detail component states and methods
         details: {

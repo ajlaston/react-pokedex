@@ -3,7 +3,7 @@ import "./Details.css";
 import CaptureForm from "../component/CaptureForm";
 import Loader from "../component/Loader";
 import { PokemonContext } from "../PokeContext";
-import {useParams } from "react-router-dom";
+import { useLocation, useParams } from "react-router-dom";
 import DexApi from "../DexAPI";
 
 
@@ -15,9 +15,12 @@ function Details() {
     const { detailData, setDetailData, setFetchedData, fetchedData } = ctx.details;
     const { toggleForm, setDisplay } = ctx.captureForm;
     const { myPokemon } = ctx.captured;
+    const { query, homeDetails, setHomeDetails } = ctx.home;
 
     const [loading, setLoading] = React.useState(true);
-    const {name} = useParams();
+    const { name } = useParams();
+    const location = useLocation();
+
     const pokemon = myPokemon.find(pokemon => pokemon.name.toLowerCase() === name);
 
     const loadData = () => {
@@ -28,6 +31,21 @@ function Details() {
                 console.log(res);
             })
         }
+    }
+
+    const queryData = () => {
+
+        const pokemon = myPokemon.find(pokemon => pokemon.name.toLowerCase() === query);
+        if (!pokemon) {
+            DexApi.getPokemon(query, setLoading).then(res => {
+
+                setFetchedData(res);
+                console.log(res);
+            })
+        } else {
+            setDetailData(pokemon)
+        }
+
     }
 
     const formatDetails = () => {
@@ -67,19 +85,28 @@ function Details() {
     }
 
     React.useEffect(() => {
-        onLoad();
+        if(location.pathname !== "/"){
+            onLoad();
+        }
     }, [])
 
     React.useEffect(() => {
-        if(pokemon){
+        if (pokemon) {
             setDetailData(pokemon);
             setLoading(false);
         }
         else if (fetchedData !== null) {
             formatDetails();
             setLoading(false);
-        } 
+        }
     }, [fetchedData]);
+
+    React.useEffect(() => {
+        if (location.pathname === "/") {
+            queryData();
+            setLoading(false)
+        }
+    }, [query])
 
     return (
 
@@ -128,15 +155,15 @@ function Details() {
 
                     {
 
-                        detailData.captured 
-                        ?
+                        detailData.captured
+                            ?
 
                             <div className="capture-info-container">
-                                <div className="capture-info"> 
-                                        <h3>Capture Information</h3>
-                                        <p>Nickname: {detailData.nickname}</p>
-                                        <p>Captured on: {detailData.date}</p>
-                                        <p>Level: {detailData.level}</p>    
+                                <div className="capture-info">
+                                    <h3>Capture Information</h3>
+                                    <p>Nickname: {detailData.nickname}</p>
+                                    <p>Captured on: {detailData.date}</p>
+                                    <p>Level: {detailData.level}</p>
                                 </div>
                             </div>
 
@@ -146,10 +173,10 @@ function Details() {
                                 <div className="open-form-container">
                                     <button className="open-form-btn" onClick={openForm}>Capture</button>
                                 </div>
-                                  
-                                 <CaptureForm />
-                                
-                               
+
+                                <CaptureForm />
+
+
                             </div>
                     }
 

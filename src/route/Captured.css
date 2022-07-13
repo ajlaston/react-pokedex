@@ -8,6 +8,7 @@
     height: 100%;
     display: flex;
     flex-direction: column;
+    background-color: #FAFAFA;
 }
 
 .capture-container-web {
@@ -46,6 +47,10 @@
         width: 600px;
         min-height: 500px;
     }
+
+    .capture-container-mb {
+        background-color: #FAFAFA;
+    }
 }
 
 @media only screen and (min-width: 1031px) and (max-width: 1384px){
@@ -62,14 +67,14 @@
         width: 100%;
         display: flex;
         justify-content: center;
-        background-color: #FAFAFA;
+        background-color: white;
         flex: 1 1 auto;
     }
 
     .capture-list-wrapper-web {
         width: 1031px;
         height: 100%;
-        background-color: #FAFAFA;
+        background-color: white;
     }
 
     .capture-list-title-container {
@@ -123,14 +128,14 @@
         width: 100%;
         display: flex;
         justify-content: center;
-        background-color: #FAFAFA;
+        background-color: white;
         flex: 1 1 auto;
     }
 
     .capture-list-wrapper-web {
         width: 1384px;
         height: 100%;
-        background-color: #FAFAFA;
+        background-color: white;
     }
 
     .capture-list-title-container {
