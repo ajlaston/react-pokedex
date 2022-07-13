@@ -25,7 +25,7 @@ function Details() {
 
     const pokemon = myPokemon.find(pokemon => {
         if(pokemon.name){
-            const pokemonName = pokemon.name.toLowerCase();
+            const pokemonName = pokemon.name;
             if(pokemonName === name){
                 return pokemon;
             }
@@ -46,7 +46,7 @@ function Details() {
         setLoading(true)
         const pokemon = myPokemon.find(pokemon => {
             if(pokemon.name){
-                const pokemonName = pokemon.name.toLowerCase();
+                const pokemonName = pokemon.name;
                 if(pokemonName === query){
                     return pokemon;
                 }
