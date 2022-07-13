@@ -23,7 +23,13 @@ function Details() {
     const { name } = useParams();
     const location = useLocation();
 
-    const pokemon = myPokemon.find(pokemon => pokemon.name.toLowerCase() === name);
+    const pokemon = myPokemon.find(pokemon => {
+        const pokemonName = pokemon.name.toLowerCase();
+        
+        if(pokemonName === name){
+            return pokemon;
+        }
+    });
 
     const loadData = () => {
         if (!pokemon) {
