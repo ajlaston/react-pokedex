@@ -30,7 +30,7 @@ function Details() {
             DexApi.getPokemon(name, setLoading).then(res => {
 
                 setFetchedData(res);
-                console.log(res);
+                
             })
         }
     }
@@ -42,7 +42,7 @@ function Details() {
             DexApi.getPokemon(query, setLoading).then(res => {
 
                 setFetchedData(res);
-                console.log(res);
+    
             })
         } else {
             setDetailData(pokemon)
