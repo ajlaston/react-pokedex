@@ -11,6 +11,8 @@ import { PokemonContext } from "../PokeContext.js";
 import { useNavigate } from "react-router-dom";
 import Details from "./Details.js";
 
+const pageNumber = 1;
+
 function Home() {
 
     const navigate = useNavigate();
@@ -18,55 +20,46 @@ function Home() {
     const ctx = useContext(PokemonContext);
     const { setFetchedData } = ctx.details;
     const { homeDetails } = ctx.home;
-    const {setDisplay} = ctx.captureForm;
-    const [page, setPage] = React.useState(1);
+    const { setDisplay } = ctx.captureForm;
 
+    const [page, setPage] = React.useState(pageNumber);
     const [dexData, setDexData] = React.useState([]);
+
     const [loading, setLoading] = React.useState(false);
 
-
-    const loadDexData = () => {
-        //setLoading passed as arg in getPokemonList() sets it to true
-        DexApi.getPokemonList(setLoading).then(res => {
-            setDexData(res);
-            setLoading(false);
+    const fetchDexData = () => {
+        DexApi.getPokemonList(setLoading, false, page).then(res => {
+            setDexData([...dexData, ...res]);
         })
     }
 
     const onLoad = () => {
         setDisplay("none")
         setFetchedData(null);
-        loadDexData()
     }
 
     const handleCapturedBtn = () => {
         navigate("/captured");
     }
 
-    const handleScroll = () => {
-        if(window.innerHeight + document.documentElement.scrollTop  === document.documentElement.offsetHeight){
-            // DexApi.getPokemonList(setLoading).then(res=>{
-            //     setDexData(prev=>{
-            //         return [...prev, ...res]
-            //     });
-            //     setLoading(false);
-            // })
-            console.log("hii")
+    const handleScroll = (e) => {
+        if (window.innerHeight + document.documentElement.scrollTop === document.body.scrollHeight) {
+            setPage(page + 20);
         }
     }
 
     window.onscroll = () => handleScroll();
 
     React.useEffect(() => {
-        //resets the local storage for all pokemon
-        //DexApi.storage.reset();
-        
         onLoad();
     }, [])
 
+
     React.useEffect(() => {
-        console.log("jjj")
-    }, [homeDetails])
+        //resets the local storage for all pokemon
+        //DexApi.storage.reset();
+        fetchDexData();
+    }, [page])
 
     return (
         <div className="home">
@@ -76,33 +69,21 @@ function Home() {
             <div className="grid-wrapper">
 
                 <div className="card-grid-container">
-                    <div className="card-grid">
-                        {loading ? <Loader /> :
-                            dexData.map((pokemon, index) => {
-                                if(index === dexData.length -1){
-                                    return <PokeCard
-                                    sprite={pokemon.sprites.other["official-artwork"].front_default}
-                                    name={pokemon.species.name}
-                                    order={pokemon.order}
-                                    type={pokemon.types}
-                                    key={pokemon.order}
-                                    page={page}
-                                />
-                                } else {
-                                    return <PokeCard
-                                    sprite={pokemon.sprites.other["official-artwork"].front_default}
-                                    name={pokemon.species.name}
-                                    order={pokemon.order}
-                                    type={pokemon.types}
-                                    key={pokemon.order}
-                                />
-                                }
 
-                               
-                            })
-                        }
-
-                    </div>
+                    {loading ? <Loader /> :
+                        <div className="card-grid">
+                            {dexData.length > 0 && dexData.map((pokemon, index) => {
+                             
+                                    return <PokeCard
+                                        sprite={pokemon.sprites.other["official-artwork"].front_default}
+                                        name={pokemon.species.name}
+                                        order={pokemon.order}
+                                        type={pokemon.types}
+                                        key={pokemon.order}
+                                    />
+                            })}
+                        </div>
+                    }
 
                     {
                         homeDetails &&
@@ -128,4 +109,4 @@ function Home() {
     )
 }
 
-export default Home;
+export default React.memo(Home);

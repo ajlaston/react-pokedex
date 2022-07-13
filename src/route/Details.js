@@ -17,6 +17,7 @@ function Details() {
     const { myPokemon } = ctx.captured;
     const { query, homeDetails, setHomeDetails } = ctx.home;
 
+    const [borderRadius, setBorderRadius] = React.useState("16px");
     const [loading, setLoading] = React.useState(true);
     const { name } = useParams();
     const location = useLocation();
@@ -87,6 +88,9 @@ function Details() {
     React.useEffect(() => {
         if(location.pathname !== "/"){
             onLoad();
+            setBorderRadius("0");
+        } else {
+            setBorderRadius("16px")
         }
     }, [])
 
@@ -110,13 +114,13 @@ function Details() {
 
     return (
 
-        <div>
+        <div className="detail-component">
             {loading ?
                 <Loader />
 
                 :
 
-                <div className="poke-details">
+                <div className="poke-details" style={{borderRadius : borderRadius}}>
                     <div className="img-box" style={{ backgroundColor: detailData.color }}>
                         <div className="img-box-content">
                             <div className="pokemon-img-wrapper">
@@ -169,7 +173,7 @@ function Details() {
 
                             :
 
-                            <div>
+                            <div className="open-form-c">
                                 <div className="open-form-container">
                                     <button className="open-form-btn" onClick={openForm}>Capture</button>
                                 </div>

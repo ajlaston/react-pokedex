@@ -7,9 +7,12 @@ const DexApi = {
         this.next = value;
     },
 
-    async getPokemonList(setIsLoading){
-        setIsLoading(true);
-        const fetchData = await fetch(this.url);
+    async getPokemonList(setIsLoading, load=true, page=1){
+        if(load){
+            setIsLoading(true);
+        }
+
+        const fetchData = await fetch(`https://pokeapi.co/api/v2/pokemon?limit=20&offset=${page}`);
         const data = await fetchData.json();
         const results = data.results;
         
