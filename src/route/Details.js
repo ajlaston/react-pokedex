@@ -44,7 +44,14 @@ function Details() {
 
     const queryData = () => {
         setLoading(true)
-        const pokemon = myPokemon.find(pokemon => pokemon.name.toLowerCase() === query);
+        const pokemon = myPokemon.find(pokemon => {
+            if(pokemon.name){
+                const pokemonName = pokemon.name.toLowerCase();
+                if(pokemonName === query){
+                    return pokemon;
+                }
+            } 
+        });
         if (!pokemon) {
             DexApi.getPokemon(query, setLoading).then(res => {
 
