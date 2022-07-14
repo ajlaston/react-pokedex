@@ -16,7 +16,7 @@ function Home() {
     const navigate = useNavigate();
 
     const ctx = useContext(PokemonContext);
-    const { setFetchedData } = ctx.details;
+    const { setFetchedData, detailDisplay, setDetailDisplay } = ctx.details;
     const { homeDetails } = ctx.home;
     const { setDisplay } = ctx.captureForm;
 
@@ -65,7 +65,7 @@ function Home() {
         DexApi.storage.reset();
 
         onLoad();
-
+        setDetailDisplay("none");
     }, [])
 
 
@@ -102,7 +102,7 @@ function Home() {
                     {
                         homeDetails &&
 
-                        <div className="captured">
+                        <div className="captured" style={{display : detailDisplay}}>
                             <Details />
                         </div>
                     }

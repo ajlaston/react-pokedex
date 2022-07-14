@@ -19,6 +19,7 @@ function PokeContextComponent(props) {
     //pokemon detail state object for PokeDetails Component
     const [fetchedData, setFetchedData] = React.useState(null);
     const [detailOpen, setDetailOpen] = React.useState(false);
+    const [detailDisplay, setDetailDisplay] = React.useState("none");
     const [detailData, setDetailData] = React.useState({
         name: "",
         order: "",
@@ -59,7 +60,10 @@ function PokeContextComponent(props) {
             setFetchedData,
 
             detailOpen : detailOpen,
-            setDetailOpen
+            setDetailOpen,
+
+            detailDisplay : detailDisplay,
+            setDetailDisplay
         },
 
         //CaptureForm state and Component

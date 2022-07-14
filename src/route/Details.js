@@ -12,7 +12,9 @@ function Details() {
     //fetchedData && DetailData
     const ctx = React.useContext(PokemonContext);
 
-    const { detailData, setDetailData, setFetchedData, fetchedData, setDetailOpen } = ctx.details;
+    const { detailData, setDetailData, setFetchedData, fetchedData, setDetailOpen,
+            detailDisplay, setDetailDisplay } = ctx.details;
+
     const { toggleForm, setDisplay } = ctx.captureForm;
     const { myPokemon } = ctx.captured;
     const { query } = ctx.home;
@@ -43,6 +45,7 @@ function Details() {
         if (!pokemon) {
             DexApi.getPokemon(query, setLoading).then(res => {
                 setFetchedData(res);
+                setLoading(false);
             })
         } else {
             setDetailData(pokemon)
@@ -91,7 +94,7 @@ function Details() {
 
 
     React.useEffect(() => {
-
+        
         /*if not on home page (web/desktop view) loads proper data else 
         formats border for Home view*/
         if(location.pathname !== "/"){
@@ -135,7 +138,7 @@ function Details() {
 
                 :
 
-                <div className="poke-details" style={{borderRadius : borderRadius}}>
+                <div className="poke-details" style={{borderRadius : borderRadius, display : detailDisplay}}>
                     <div className="img-box" style={{ backgroundColor: detailData.color, borderRadius : imgBorderRadius }} >
                         <div className="img-box-content">
                             <div className="pokemon-img-wrapper">
