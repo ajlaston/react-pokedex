@@ -27,12 +27,14 @@ function Home() {
 
     const [loading, setLoading] = React.useState(true);
 
+    //get page from Api and set to dexData
     const fetchDexData = () => {
         DexApi.getPokemonList(setLoading, false, page).then(res => {
             setDexData([...dexData, ...res]);
         })
     }
 
+    //on mount data is loaded and scrollref is set to true.
     const onLoad = () => {
         setDisplay("none")
         setFetchedData(null);
@@ -44,12 +46,14 @@ function Home() {
         });
     }
 
+    //if at bottom of page, page updates with more pokemon
     const handleScroll = (e) => {
         if (window.innerHeight + document.documentElement.scrollTop === document.body.scrollHeight && scrollRef.current) {
             setPage(page + 20);
         }
     }
 
+    //listens for scrolling and updates dexData array (updates home screen with pokemon)
     window.onscroll = () => handleScroll();
 
     const handleCapturedBtn = () => {
@@ -58,13 +62,14 @@ function Home() {
 
     React.useEffect(() => {
         //the code commented below resets the local storage for all pokemon
-        //DexApi.storage.reset();
+        DexApi.storage.reset();
 
         onLoad();
 
     }, [])
 
 
+    //if at bottom of page data is fetched
     React.useEffect(() => {
         if (page > 1 && scrollRef) {
             fetchDexData();

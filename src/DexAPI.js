@@ -7,6 +7,7 @@ const DexApi = {
         this.next = value;
     },
 
+    //get pokemon list
     async getPokemonList(setIsLoading, load=true, page=1){
         if(load){
             setIsLoading(true);
@@ -25,6 +26,7 @@ const DexApi = {
         return Promise.all(mapped);
     },
 
+    //get one pokemon
     async getPokemon(name, setIsLoading){
         setIsLoading(true)
         const fetchPokemon = await fetch(`https://pokeapi.co/api/v2/pokemon/${name}`)
@@ -37,13 +39,16 @@ const DexApi = {
     //methods used to format data for different cards.
     card: {
 
+        //colors for all pokemon types
         colors: { "rock": "#bbaa66", "ghost": "#6666ba", "steel": "#aaaabb", "water": "#3399fe", "grass": "#76cc55", "psychic": "#ff5599", "ice": "#65ccff", "dark": "#775444", "fairy": "#ee99ee", "normal": "#aaaa9b", "fighting": "#ba5544", "flying": "#8799ff", "poison": "#aa5599", "ground": "#ddbb54", "bug": "#a9bb22", "fire": "#eb5435", "electric": "#ffcc33", "dragon": "#6666ba" },
 
+        //parses fetched data and returns corresponding color for type.
         setBackgroundColor(type) {
             const typeName = type[0].type.name;
             return this.colors[typeName];
         },
 
+        //formats name from fetched data
         formatName(name) {
             const str = name.split("");
 
@@ -65,6 +70,7 @@ const DexApi = {
             return result;
         },
 
+        //formats type(s) from fetched data
         formatType(arr) {
             const typeArr = [];
 
@@ -82,6 +88,7 @@ const DexApi = {
             return result;
         },
 
+        //format order from fetched data
         formatOrder(num) {
             const numArr = num.toString().split("");
 
@@ -101,11 +108,15 @@ const DexApi = {
         }
     },
 
+    //handles storage data
     storage : {
+
+        //saves pokemon to localStorage
         save(array){
             localStorage.setItem("pokedex", JSON.stringify(array))
         },
 
+        //loads captured pokemon from localStorage
         load(){
             if(localStorage.getItem("pokedex")){
                 return JSON.parse(localStorage.getItem("pokedex"));
@@ -114,6 +125,7 @@ const DexApi = {
             }
         },
 
+        //resets captured pokemon localStorage
         reset(){
             localStorage.setItem("pokedex", "[]");
         }

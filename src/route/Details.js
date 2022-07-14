@@ -27,6 +27,7 @@ function Details() {
     //checks if pokemon is in myPokemon array
     const pokemon = myPokemon.find(pokemon => pokemon.name.toLowerCase() === name);
 
+    //onload first page is fetched from PokeApi
     const loadData = () => {
         if (!pokemon) {
             DexApi.getPokemon(name, setLoading).then(res => {
@@ -35,14 +36,13 @@ function Details() {
         }
     }
 
+    //data is fetched from Api and used to populate home detail component.
     const queryData = () => {
         setLoading(true);
         const pokemon = myPokemon.find(pokemon => pokemon.name.toLowerCase() === query)
         if (!pokemon) {
             DexApi.getPokemon(query, setLoading).then(res => {
-
                 setFetchedData(res);
-    
             })
         } else {
             setDetailData(pokemon)
@@ -50,6 +50,7 @@ function Details() {
 
     }
 
+    //fetched data formatted to be used in view.
     const formatDetails = () => {
         if (fetchedData) {
             const name = DexApi.card.formatName(fetchedData.name);
@@ -83,11 +84,16 @@ function Details() {
         loadData();
     }
 
+    //opens form to capture pokemon
     const openForm = () => {
         toggleForm("initial")
     }
 
+
     React.useEffect(() => {
+
+        /*if not on home page (web/desktop view) loads proper data else 
+        formats border for Home view*/
         if(location.pathname !== "/"){
             onLoad();
             setBorderRadius("0");
@@ -99,6 +105,8 @@ function Details() {
         }
     }, [])
 
+    /*if pokemon has been caught then data is loaded from myPokemon array else
+    fetched results are formatted and loaded */
     React.useEffect(() => {
         if (pokemon) {
             setDetailData(pokemon);
@@ -110,6 +118,8 @@ function Details() {
         }
     }, [fetchedData]);
 
+    /*if query string has changed and endpoint is home ('/') then query
+    is processed via PokeApi */
     React.useEffect(() => {
         if (location.pathname === "/") {
             queryData();
