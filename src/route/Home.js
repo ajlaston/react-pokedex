@@ -50,7 +50,7 @@ function Home() {
     const handleScroll = (e) => {
         if (window.innerHeight + document.documentElement.scrollTop === document.body.scrollHeight ) {
             setPage(page + 20);
-            console.log("bottom")
+            console.log(document.body.scrollHeight,  window.innerHeight + document.documentElement.scrollTop )
         }
     }
 
