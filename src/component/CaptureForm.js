@@ -17,7 +17,7 @@ function CaptureForm() {
         }));
     }
 
-    //if you click outside of form it will close the form
+    //handles clicking outside of form , it will close the form.
     const closeForm = (e) => {
         if (e.target.className === "pop-up-wrapper") {
             clearForm();
@@ -25,6 +25,7 @@ function CaptureForm() {
         }
     }
 
+    //toggles body element overflow when CaptureForm opens to disable scrolling.
     React.useEffect(() => {
         if(display !== "none"){
             document.body.style.overflow = "hidden";

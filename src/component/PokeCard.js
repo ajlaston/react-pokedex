@@ -1,7 +1,8 @@
 import React from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { PokemonContext } from "../PokeContext";
 import "./PokeCard.css";
+import DexApi from "../DexAPI";
 
 function PokeCard(props) {
 
@@ -73,6 +74,7 @@ function PokeCard(props) {
         return result;
     }
 
+    //click 
     const handleCardClick = () => {
         if(window.innerWidth >= 1031){
             setQuery(props.name);
@@ -83,10 +85,11 @@ function PokeCard(props) {
         
     }
 
-    const color = setBackground(props.type);
-    const type = parseType(props.type);
-    const order = parseOrder(props.order);
-    const name = parseName(props.name);
+    //props changed to proper format to be viewed in card
+    const color = DexApi.card.setBackgroundColor(props.type);
+    const type = DexApi.card.formatType(props.type);
+    const order = DexApi.card.formatOrder(props.order);
+    const name = DexApi.card.formatName(props.name);
 
     return (
         <div className="pokemon-card" style={{ backgroundColor: color }}>

@@ -3,6 +3,7 @@ import "./Loader.css"
 
 function Loader() {
 
+    //ball pulses until response has returned for a fetched resource.
     return(
         <div className="loader">
             <div className="ball-wrapper">
