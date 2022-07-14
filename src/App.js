@@ -1,5 +1,5 @@
 import './App.css';
-import { Route, Routes, Link, useLocation } from "react-router-dom";
+import { Route, Routes } from "react-router-dom";
 import Home from './route/Home';
 import Details from './route/Details';
 import Captured from './route/Captured';
@@ -14,7 +14,6 @@ function App() {
 
               <Route path="/details">
                 <Route path=':name'  element={<Details/>}/>
-                <Route path=':name/popup' element={<Details />}/>
               </Route>
 
             <Route path='/captured' element={<Captured />} />

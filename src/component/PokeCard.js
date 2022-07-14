@@ -8,73 +8,12 @@ function PokeCard(props) {
 
     const navigate = useNavigate();
     const ctx = React.useContext(PokemonContext);
-    const {homeDetails ,setHomeDetails} = ctx.home;
-    const {query,setQuery} = ctx.home;
+    const {setHomeDetails} = ctx.home;
+    const {setQuery} = ctx.home;
 
-    const colors = { "rock": "#bbaa66", "ghost": "#6666ba", "steel": "#aaaabb", "water": "#3399fe", "grass": "#76cc55", "psychic": "#ff5599", "ice": "#65ccff", "dark": "#775444", "fairy": "#ee99ee", "normal": "#aaaa9b", "fighting": "#ba5544", "flying": "#8799ff", "poison": "#aa5599", "ground": "#ddbb54", "bug": "#a9bb22", "fire": "#eb5435", "electric": "#ffcc33", "dragon": "#6666ba" }
 
-    const setBackground = (type) => {
-        const typeName = type[0].type.name;
-        return colors[typeName];
-    }
-
-    const parseOrder = (num) => {
-        const numArr = num.toString().split("");
-
-        switch (numArr.length) {
-            case 1:
-                numArr.unshift('00');
-                break;
-            case 2:
-                numArr.unshift('0');
-                break;
-            default:
-                break;
-        }
-
-        const result = numArr.join("");
-        return result;
-    }
-
-    const parseName = (name) => {
-        const str = name.split("");
-
-        let upper = true;
-
-        const mappedString = str.map((char, index, array) => {
-            if (upper) {
-                upper = false;
-                return char.toUpperCase();
-            } else if (char === " ") {
-                upper = true;
-                return " ";
-            } else {
-                return char
-            }
-        })
-
-        const result = mappedString.join("").trim();
-        return result;
-    }
-
-    const parseType = (arr) => {
-        const typeArr = [];
-
-        arr.forEach((item, index, array) => {
-            const typeName = parseName(item.type.name);
-            typeArr.push(typeName);
-
-            if (array[index + 1]) {
-                typeArr.push('·')
-            }
-        })
-
-        const result = typeArr.join(" ").trim();
-
-        return result;
-    }
-
-    //click 
+    /*when card is clicked  if on home screen detail component pops up 
+    else navigates to details route and the pokemon as the endpoint in mobile */
     const handleCardClick = () => {
         if(window.innerWidth >= 1031){
             setQuery(props.name);

@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React from "react";
 import "./Details.css";
 import CaptureForm from "../component/CaptureForm";
 import Loader from "../component/Loader";
@@ -12,7 +12,7 @@ function Details() {
     //fetchedData && DetailData
     const ctx = React.useContext(PokemonContext);
 
-    const { detailData, setDetailData, setFetchedData, fetchedData, detailOpen, setDetailOpen } = ctx.details;
+    const { detailData, setDetailData, setFetchedData, fetchedData, setDetailOpen } = ctx.details;
     const { toggleForm, setDisplay } = ctx.captureForm;
     const { myPokemon } = ctx.captured;
     const { query } = ctx.home;
@@ -20,9 +20,11 @@ function Details() {
     const [borderRadius, setBorderRadius] = React.useState("16px");
     const [imgBorderRadius, setImgBorderRadius] = React.useState("0");
     const [loading, setLoading] = React.useState(true);
+
     const { name } = useParams();
     const location = useLocation();
 
+    //checks if pokemon is in myPokemon array
     const pokemon = myPokemon.find(pokemon => pokemon.name.toLowerCase() === name);
 
     const loadData = () => {
