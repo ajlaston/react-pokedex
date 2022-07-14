@@ -71,7 +71,7 @@ function Home() {
 
     //if at bottom of page data is fetched
     React.useEffect(() => {
-        if (page > 1 && scrollRef) {
+        if (page > 1 && scrollRef.current) {
             fetchDexData();
         }
     }, [page])
