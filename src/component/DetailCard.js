@@ -11,8 +11,7 @@ function DetailCard() {
     //fetchedData && DetailData
     const ctx = React.useContext(PokemonContext);
     
-    const [fetchedData, setFetchedData] = React.useState(null)
-    //const [detailData, setDetailData] = React.useState(null);
+    const [fetchedData, setFetchedData] = React.useState(null);
     
     const { toggleForm, setDisplay } = ctx.captureForm;
     const { myPokemon } = ctx.captured;
@@ -26,31 +25,17 @@ function DetailCard() {
     //checks if pokemon is in myPokemon array
     const pokemon = myPokemon.find(pokemon => pokemon.name.toLowerCase() === query);
 
-    //onload first page is fetched from PokeApi
-    const loadData = () => {
-        if (!pokemon) {
-            DexApi.getPokemon(query, setLoading).then(res => {
-                setFetchedData(res);
-            })
-        } else {
-            //setFetchedData(null);
-            console.log(pokemon)
-        }
-    }
-
     //data is fetched from Api and used to populate home detail component.
     const queryData = () => {
-        //setLoading(true);
-        console.log("querying")
+
         const pokemon = myPokemon.find(pokemon => pokemon.name.toLowerCase() === query)
         if (!pokemon) {
             DexApi.getPokemon(query, setLoading).then(res => {
                 setFetchedData(res);
-                console.log("???")
                 setLoading(false);
             })
         } else {
-            setDetailData(pokemon)
+            setDetailData(pokemon);
         }
     }
 
@@ -94,7 +79,7 @@ function DetailCard() {
     /*if pokemon has been caught then data is loaded from myPokemon array else
     fetched results are formatted and loaded */
     React.useEffect(() => {
-        
+        //onload purposes
         if (pokemon) {
             setDetailData(pokemon);
             setLoading(false);

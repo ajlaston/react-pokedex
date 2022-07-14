@@ -25,18 +25,13 @@ function CaptureForm() {
         }
     }
 
-    React.useEffect(()=>{
-        console.log("mounting")
-    }, [])
-
     //toggles body element overflow when CaptureForm opens to disable scrolling.
     React.useEffect(() => {
         if (display !== "none") {
-            document.body.style.overflow = "hidden";
+            document.body.style.overflow = "hidden";   
         } else {
-            document.body.style.overflow = "initial";
+           document.body.style.overflow = "initial";
         }
-
     }, [display])
 
     return (

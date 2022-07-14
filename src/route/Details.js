@@ -1,10 +1,12 @@
 import React from "react";
-import "./Details.css";
-import CaptureForm from "../component/CaptureForm";
-import Loader from "../component/Loader";
 import { PokemonContext } from "../PokeContext";
 import { useLocation, useParams } from "react-router-dom";
 import DexApi from "../DexAPI";
+
+import CaptureForm from "../component/CaptureForm";
+import Loader from "../component/Loader";
+
+import "./Details.css";
 
 
 function Details() {
@@ -12,17 +14,11 @@ function Details() {
     //fetchedData && DetailData
     const ctx = React.useContext(PokemonContext);
 
-    //
-    const { detailData, setDetailData, setFetchedData, fetchedData, setDetailOpen,
-            detailDisplay, setDetailDisplay } = ctx.details;
-
-    
+    const { detailData, setDetailData, setFetchedData, fetchedData } = ctx.details;
+ 
     const { toggleForm, setDisplay } = ctx.captureForm;
     const { myPokemon } = ctx.captured;
-    const { query } = ctx.home;
 
-    const [borderRadius, setBorderRadius] = React.useState("16px");
-    const [imgBorderRadius, setImgBorderRadius] = React.useState("0");
     const [loading, setLoading] = React.useState(true);
 
     const { name } = useParams();
@@ -36,7 +32,6 @@ function Details() {
         if (!pokemon) {
             DexApi.getPokemon(name, setLoading).then(res => {
                 setFetchedData(res);
-                console.log(res)
             })
         } else {
             setDetailData(pokemon)
@@ -44,19 +39,6 @@ function Details() {
     }
 
     //data is fetched from Api and used to populate home detail component.
-    const queryData = () => {
-        setLoading(true);
-        const pokemon = myPokemon.find(pokemon => pokemon.name.toLowerCase() === query)
-        if (!pokemon) {
-            DexApi.getPokemon(query, setLoading).then(res => {
-                setFetchedData(res);
-                //setLoading(false);
-            })
-        } else {
-            setDetailData(pokemon)
-        }
-
-    }
 
     //fetched data formatted to be used in view.
     const formatDetails = () => {
@@ -88,7 +70,7 @@ function Details() {
 
     const onLoad = () => {
         setDisplay("none");
-        setDetailOpen(true);
+        //setDetailOpen(true);
         loadData();
     }
 
@@ -100,8 +82,6 @@ function Details() {
 
     React.useEffect(() => {
         
-        /*if not on home page (web/desktop view) loads proper data else 
-        formats border for Home view*/
         onLoad();
     }, [])
 
@@ -109,7 +89,6 @@ function Details() {
     fetched results are formatted and loaded */
     React.useEffect(() => {
         if (pokemon) {
-            setDetailData(pokemon);
             setLoading(false);
         }
         else if (fetchedData !== null) {
@@ -117,15 +96,6 @@ function Details() {
             setLoading(false);
         }
     }, [fetchedData]);
-
-    /*if query string has changed and endpoint is home ('/') then query
-    is processed via PokeApi */
-    React.useEffect(() => {
-        if (location.pathname === "/") {
-            queryData();
-            setLoading(false);
-        }
-    }, [query])
 
     return (
 
@@ -135,8 +105,8 @@ function Details() {
 
                 :
 
-                <div className="poke-details" style={{borderRadius : borderRadius}}>
-                    <div className="img-box" style={{ backgroundColor: detailData.color, borderRadius : imgBorderRadius }} >
+                <div className="poke-details" >
+                    <div className="img-box" style={{ backgroundColor: detailData.color }} >
                         <div className="img-box-content">
                             <div className="pokemon-img-wrapper">
                                 <div className="pokemon-img" style={{ backgroundImage: `url(${detailData.sprite})` }}></div>

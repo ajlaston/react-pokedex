@@ -1,8 +1,10 @@
 import React from "react";
 import { PokemonContext } from "../PokeContext";
-import "./Captured.css";
+
 import CaptureCard from "../component/CapturedCard";
 import Header from "../component/Header";
+
+import "./Captured.css";
 
 
 function Captured() {

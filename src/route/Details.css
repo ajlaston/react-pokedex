@@ -20,8 +20,6 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    border-end-end-radius: 0px;
-    border-start-end-radius: 0px;
 }
 
 .img-box-content {

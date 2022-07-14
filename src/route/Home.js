@@ -16,7 +16,7 @@ function Home() {
     const navigate = useNavigate();
 
     const ctx = useContext(PokemonContext);
-    const { setFetchedData, detailDisplay, setDetailDisplay } = ctx.details;
+    const { setFetchedData } = ctx.details;
     const { homeDetails } = ctx.home;
     const { setDisplay, display } = ctx.captureForm;
 
@@ -36,6 +36,8 @@ function Home() {
 
     //on mount data is loaded and scrollref is set to true.
     const onLoad = () => {
+
+        //closes pop up if open
         setDisplay("none")
         setFetchedData(null);
 
@@ -50,13 +52,13 @@ function Home() {
     const handleScroll = (e) => {
         if (window.innerHeight + document.documentElement.scrollTop === document.body.scrollHeight ) {
             setPage(page + 20);
-            console.log("bottom")
         }
     }
 
     //listens for scrolling and updates dexData array (updates home screen with pokemon)
     window.onscroll = () => handleScroll();
 
+    //switches to the /captured route that show all captured pokemon
     const handleCapturedBtn = () => {
         navigate("/captured");
     }
@@ -64,9 +66,8 @@ function Home() {
     React.useEffect(() => {
         //the code commented below resets the local storage for all pokemon
         //DexApi.storage.reset();
-
+        
         onLoad();
-        setDetailDisplay("none");
     }, [])
 
 
