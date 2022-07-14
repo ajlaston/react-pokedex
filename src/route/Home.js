@@ -63,7 +63,7 @@ function Home() {
 
     React.useEffect(() => {
         //the code commented below resets the local storage for all pokemon
-        DexApi.storage.reset();
+        //DexApi.storage.reset();
 
         onLoad();
         setDetailDisplay("none");
@@ -89,12 +89,11 @@ function Home() {
                     {loading === true ? <Loader /> :
                         <ul className="card-grid">
                             {dexData.length > 0 && dexData.map((pokemon, index) => {
-                                return <li><PokeCard
+                                return <li key={pokemon.order}><PokeCard
                                     sprite={pokemon.sprites.other["official-artwork"].front_default}
                                     name={pokemon.species.name}
                                     order={pokemon.order}
                                     type={pokemon.types}
-                                    key={pokemon.order}
                                 /></li>
                             })}
                         </ul>

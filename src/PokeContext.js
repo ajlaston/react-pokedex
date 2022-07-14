@@ -127,7 +127,12 @@ function PokeContextComponent(props) {
     }
 
     React.useEffect(() => {
-        setMyPokemon(DexApi.storage.load());
+        if(localStorage.getItem("pokedex")){
+            setMyPokemon(DexApi.storage.load());
+        } else {
+            localStorage.setItem("pokedex", "[]");
+        }
+        
     }, [])
 
     React.useEffect(()=>{
