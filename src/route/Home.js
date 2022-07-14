@@ -48,7 +48,7 @@ function Home() {
 
     //if at bottom of page, page updates with more pokemon
     const handleScroll = (e) => {
-        if (window.innerHeight + document.documentElement.scrollTop === document.body.scrollHeight ) {
+        if (window.innerHeight + document.documentElement.scrollTop === document.body.scrollHeight-5 ) {
             setPage(page + 20);
             console.log(document.body.scrollHeight,  window.innerHeight + document.documentElement.scrollTop )
         }
