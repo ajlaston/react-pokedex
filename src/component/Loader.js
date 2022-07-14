@@ -1,10 +1,11 @@
 import React from "react";
 import "./Loader.css"
 
-function Loader() {
+function Loader(props) {
 
     //ball pulses until response has returned for a fetched resource.
     return(
+
         <div className="loader">
             <div className="ball-wrapper">
                 <div className="ball" ></div>

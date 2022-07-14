@@ -7,11 +7,17 @@
 }
 
 .pop-up {
+    display: flex;
+    justify-content: center;
     width: 328px;
     height: 292px;
     background-color: white;
     border-radius: 10px;
-    padding-left: 16px;
+    /* padding-left: 16px; */
+}
+
+.pop-up-content h2{
+    text-align: center;
 }
 
 .pop-up h2 {

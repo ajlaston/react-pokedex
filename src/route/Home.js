@@ -9,7 +9,7 @@ import "./Home.css";
 import pokeball from "../img/pokeball.png";
 import { PokemonContext } from "../PokeContext.js";
 import { useNavigate } from "react-router-dom";
-import Details from "./Details.js";
+import DetailCard from "../component/DetailCard"
 
 function Home() {
 
@@ -18,7 +18,7 @@ function Home() {
     const ctx = useContext(PokemonContext);
     const { setFetchedData, detailDisplay, setDetailDisplay } = ctx.details;
     const { homeDetails } = ctx.home;
-    const { setDisplay } = ctx.captureForm;
+    const { setDisplay, display } = ctx.captureForm;
 
     const [page, setPage] = React.useState(1);
     const [dexData, setDexData] = React.useState([]);
@@ -82,11 +82,12 @@ function Home() {
 
             <Header />
 
+            {loading ? <Loader /> :
             <div className="grid-wrapper">
 
                 <div className="card-grid-container">
 
-                    {loading === true ? <Loader /> :
+                    
                         <ul className="card-grid">
                             {dexData.length > 0 && dexData.map((pokemon, index) => {
                                 return <li key={pokemon.order}><PokeCard
@@ -97,13 +98,13 @@ function Home() {
                                 /></li>
                             })}
                         </ul>
-                    }
+                    
 
                     {
                         homeDetails &&
 
-                        <div className="captured" style={{display : detailDisplay}}>
-                            <Details />
+                        <div className="captured" >
+                            <DetailCard />
                         </div>
                     }
 
@@ -112,10 +113,13 @@ function Home() {
 
             </div>
 
+            }
+
             {
                 !loading && <button className="pokeball-btn" onClick={handleCapturedBtn}><img src={pokeball} alt="pokeball-btn" /></button>
             }
 
+            
             <CaptureForm />
 
 

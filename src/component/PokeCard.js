@@ -10,7 +10,7 @@ function PokeCard(props) {
     const ctx = React.useContext(PokemonContext);
     const {setHomeDetails} = ctx.home;
     const {setQuery} = ctx.home;
-    const {detailDisplay, setDetailDisplay} = ctx.details
+    const {detailDisplay, setDetailDisplay, setDetailData} = ctx.details
 
 
     /*when card is clicked  if on home screen detail component pops up 
@@ -21,8 +21,9 @@ function PokeCard(props) {
             setHomeDetails(true);
         } else {
             navigate(`/details/${props.name}`);
+            setDetailData(null);
         }
-        setDetailDisplay("flex");
+        //setDetailDisplay("flex");
     }
 
     //props changed to proper format to be viewed in card

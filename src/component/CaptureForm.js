@@ -21,58 +21,67 @@ function CaptureForm() {
     const closeForm = (e) => {
         if (e.target.className === "pop-up-wrapper") {
             clearForm();
-            toggleForm();  
+            toggleForm();
         }
     }
 
+    React.useEffect(()=>{
+        console.log("mounting")
+    }, [])
+
     //toggles body element overflow when CaptureForm opens to disable scrolling.
     React.useEffect(() => {
-        if(display !== "none"){
+        if (display !== "none") {
             document.body.style.overflow = "hidden";
         } else {
             document.body.style.overflow = "initial";
         }
-        
+
     }, [display])
 
     return (
         <div className="pop-up-container" style={{ display: display }}>
+
             <div className="pop-up-wrapper" onClick={closeForm}>
 
                 <div className="pop-up">
-                    <h2>Capturing {detailData.name}</h2>
 
-                    {/* form data below */}
-                    <form className="pop-up-form" onSubmit={capturePokemon}>
+                    <div className="pop-up-content">
+                        <h2>Capturing {detailData.name}</h2>
 
-                        <input
-                            name="nickname"
-                            onChange={handleChange}
-                            value={formData.nickname}
-                            placeholder="Nickname"
-                            
-                        />
+                        {/* form data below */}
+                        <form className="pop-up-form" onSubmit={capturePokemon}>
 
-                        <input
-                            name="date"
-                            type="date"
-                            onChange={handleChange}
-                            value={formData.date}
-                            placeholder="Captured Date"
-                            required
-                        />
+                            <input
+                                name="nickname"
+                                onChange={handleChange}
+                                value={formData.nickname}
+                                placeholder="Nickname"
 
-                        <input
-                            name="level"
-                            type="number"
-                            onChange={handleChange}
-                            value={formData.level}
-                            placeholder="Captured Level"
-                            required
-                        />
+                            />
 
-                        <button className="pop-up-btn" >Capture</button>
-                    </form>
+                            <input
+                                name="date"
+                                type="date"
+                                onChange={handleChange}
+                                value={formData.date}
+                                placeholder="Captured Date"
+                                required
+                            />
+
+                            <input
+                                name="level"
+                                type="number"
+                                onChange={handleChange}
+                                value={formData.level}
+                                placeholder="Captured Level"
+                                required
+                            />
+
+                            <button className="pop-up-btn" >Capture</button>
+                        </form>
+                    </div>
+
                 </div>
             </div>
 

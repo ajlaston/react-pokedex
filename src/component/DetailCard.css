@@ -1,0 +1,9 @@
+.img-box-card {
+    height: 275px;
+    min-width: 333px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 38px 38px 0px 0px;
+}
