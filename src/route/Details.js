@@ -45,7 +45,7 @@ function Details() {
         if (!pokemon) {
             DexApi.getPokemon(query, setLoading).then(res => {
                 setFetchedData(res);
-                setLoading(false);
+                //setLoading(false);
             })
         } else {
             setDetailData(pokemon)
