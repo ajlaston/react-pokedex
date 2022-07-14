@@ -48,7 +48,7 @@ function Home() {
 
     //if at bottom of page, page updates with more pokemon
     const handleScroll = (e) => {
-        if (document.body.offsetHeight + document.documentElement.scrollTop === document.body.scrollHeight ) {
+        if (window.innerHeight + document.documentElement.scrollTop === document.body.scrollHeight ) {
             setPage(page + 20);
             console.log("bottom")
         }
@@ -72,9 +72,7 @@ function Home() {
 
     //if at bottom of page data is fetched
     React.useEffect(() => {
-        if (page > 1) {
             fetchDexData();
-        }
     }, [page])
 
     return (
