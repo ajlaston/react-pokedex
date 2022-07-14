@@ -10,7 +10,7 @@ import DetailCard from "../component/DetailCard";
 
 import pokeball from "../img/pokeball.png";
 import { PokemonContext } from "../PokeContext.js";
-
+import InfiniteScroll from 'react-infinite-scroll-component';
 import "./Home.css";
 
 
@@ -53,18 +53,17 @@ function Home() {
 
     //if at bottom of page, page updates with more pokemon
     const handleScroll = (e) => {
-        if (window.innerHeight + document.documentElement.scrollTop === document.body.scrollHeight ) {
-            setPage(page + 20);
+        if (window.innerHeight + document.documentElement.scrollTop === document.body.scrollHeight) {
+            
             //setLoading(true);
         }
+    }
 
-      
+    const endOfPage = () => {
+        setPage(page + 20);
     }
 
     //listens for scrolling and updates dexData array (updates home screen with pokemon)
-    window.addEventListener("scroll", ()=>{
-        handleScroll();
-    })
 
     //switches to the /captured route that show all captured pokemon
     const handleCapturedBtn = () => {
@@ -73,8 +72,7 @@ function Home() {
 
     React.useEffect(() => {
         //the code commented below resets the local storage for all pokemon
-        //DexApi.storage.reset();
-     
+        DexApi.storage.reset();
 
         onLoad();
 
@@ -94,35 +92,44 @@ function Home() {
             <Header />
 
             {loading ? <Loader /> :
-            <div className="grid-wrapper">
+                <div className="grid-wrapper">
 
-                <div className="card-grid-container">
+                    <div className="card-grid-container">
 
-                    
+
                         <ul className="card-grid">
-                            {dexData.length > 0 && dexData.map((pokemon, index) => {
-                                return <li key={pokemon.order}><PokeCard
-                                    sprite={pokemon.sprites.other["official-artwork"].front_default}
-                                    name={pokemon.species.name}
-                                    order={pokemon.order}
-                                    type={pokemon.types}
-                                /></li>
-                            })}
+                            <InfiniteScroll className="card-grid" 
+                                style={{overflow : "hidden"}}
+                                dataLength={dexData.length}
+                                next={endOfPage}
+                                hasMore={true}
+                                loader={<Loader/>}
+                            >
+                                {dexData.length > 0 && dexData.map((pokemon, index) => {
+                                    return <li key={pokemon.order}><PokeCard
+                                        sprite={pokemon.sprites.other["official-artwork"].front_default}
+                                        name={pokemon.species.name}
+                                        order={pokemon.order}
+                                        type={pokemon.types}
+                                    /></li>
+                                })}
+                            </InfiniteScroll>
+
                         </ul>
-                    
 
-                    {
-                        homeDetails &&
 
-                        <div className="captured" >
-                            <DetailCard />
-                        </div>
-                    }
+                        {
+                            homeDetails &&
+
+                            <div className="captured" >
+                                <DetailCard />
+                            </div>
+                        }
+
+                    </div>
+
 
                 </div>
-
-
-            </div>
 
             }
 
@@ -130,7 +137,7 @@ function Home() {
                 !loading && <button className="pokeball-btn" onClick={handleCapturedBtn}><img src={pokeball} alt="pokeball-btn" /></button>
             }
 
-            
+
             <CaptureForm />
 
 
