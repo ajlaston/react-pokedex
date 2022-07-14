@@ -87,17 +87,17 @@ function Home() {
                 <div className="card-grid-container">
 
                     {loading === true ? <Loader /> :
-                        <div className="card-grid">
+                        <ul className="card-grid">
                             {dexData.length > 0 && dexData.map((pokemon, index) => {
-                                return <PokeCard
+                                return <li><PokeCard
                                     sprite={pokemon.sprites.other["official-artwork"].front_default}
                                     name={pokemon.species.name}
                                     order={pokemon.order}
                                     type={pokemon.types}
                                     key={pokemon.order}
-                                />
+                                /></li>
                             })}
-                        </div>
+                        </ul>
                     }
 
                     {

@@ -38,6 +38,11 @@
     flex-wrap: wrap;
     padding: 0px;
     gap: 16px;
+
+}
+
+.card-grid li {
+    list-style-type: none;
 }
 
 .pokeball-btn {
