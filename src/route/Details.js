@@ -23,35 +23,19 @@ function Details() {
     const { name } = useParams();
     const location = useLocation();
 
-    const pokemon = myPokemon.find(pokemon => {
-        if(pokemon.name){
-            const pokemonName = pokemon.name;
-            if(pokemonName === name){
-                return pokemon;
-            }
-        } 
-    });
+    const pokemon = myPokemon.find(pokemon => pokemon.name.toLowerCase() === name);
 
     const loadData = () => {
         if (!pokemon) {
             DexApi.getPokemon(name, setLoading).then(res => {
-
                 setFetchedData(res);
-                
             })
         }
     }
 
     const queryData = () => {
-        setLoading(true)
-        const pokemon = myPokemon.find(pokemon => {
-            if(pokemon.name){
-                const pokemonName = pokemon.name;
-                if(pokemonName === query){
-                    return pokemon;
-                }
-            } 
-        });
+        setLoading(true);
+        const pokemon = myPokemon.find(pokemon => pokemon.name.toLowerCase() === query)
         if (!pokemon) {
             DexApi.getPokemon(query, setLoading).then(res => {
 
@@ -127,7 +111,7 @@ function Details() {
     React.useEffect(() => {
         if (location.pathname === "/") {
             queryData();
-            setLoading(false)
+            setLoading(false);
         }
     }, [query])
 

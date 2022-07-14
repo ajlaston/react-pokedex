@@ -1,15 +1,14 @@
 import React from "react";
 import "./CaptureForm.css";
 import { PokemonContext } from "../PokeContext";
-import DexApi from "../DexAPI";
 
 function CaptureForm() {
 
     const ctx = React.useContext(PokemonContext);
     const { formData, setFormData, display, toggleForm, clearForm, capturePokemon } = ctx.captureForm;
     const { detailData } = ctx.details;
-    const { myPokemon, setMyPokemon } = ctx.captured;
 
+    //updates form 
     const handleChange = (e) => {
         const { name, value } = e.target
         setFormData(prev => ({
