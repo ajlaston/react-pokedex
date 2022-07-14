@@ -1,15 +1,19 @@
 import React, { useContext } from "react";
+import { useNavigate } from "react-router-dom";
+import DexApi from "../DexAPI.js";
+
 import PokeCard from "../component/PokeCard.js";
 import Loader from "../component/Loader.js";
 import Header from "../component/Header.js";
 import CaptureForm from "../component/CaptureForm.js";
-import DexApi from "../DexAPI.js";
-import "./Home.css";
+import DetailCard from "../component/DetailCard";
 
 import pokeball from "../img/pokeball.png";
 import { PokemonContext } from "../PokeContext.js";
-import { useNavigate } from "react-router-dom";
-import DetailCard from "../component/DetailCard"
+
+import "./Home.css";
+
+
 
 function Home() {
 
@@ -22,10 +26,9 @@ function Home() {
 
     const [page, setPage] = React.useState(1);
     const [dexData, setDexData] = React.useState([]);
+    const [loading, setLoading] = React.useState(true);
 
     const scrollRef = React.useRef(false);
-
-    const [loading, setLoading] = React.useState(true);
 
     //get page from Api and set to dexData
     const fetchDexData = () => {
@@ -52,11 +55,16 @@ function Home() {
     const handleScroll = (e) => {
         if (window.innerHeight + document.documentElement.scrollTop === document.body.scrollHeight ) {
             setPage(page + 20);
+            //setLoading(true);
         }
+
+      
     }
 
     //listens for scrolling and updates dexData array (updates home screen with pokemon)
-    window.onscroll = () => handleScroll();
+    window.addEventListener("scroll", ()=>{
+        handleScroll();
+    })
 
     //switches to the /captured route that show all captured pokemon
     const handleCapturedBtn = () => {
@@ -66,8 +74,10 @@ function Home() {
     React.useEffect(() => {
         //the code commented below resets the local storage for all pokemon
         //DexApi.storage.reset();
-        
+     
+
         onLoad();
+
     }, [])
 
 
