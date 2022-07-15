@@ -10,15 +10,20 @@ function Header(props){
     const ctx = React.useContext(PokemonContext);
 
     const navigate = useNavigate();
+    
     const handleCaptureBtn = () => {  
         navigate('/captured');
     }    
+
+    const goToHome = () => {
+        navigate("/");
+    }
 
     return(
         <div className="pokemon-logo-container">
 
         <div className="pokemon-logo-container-wrapper">
-            <div className="logo-wrapper">
+            <div className="logo-wrapper" onClick={goToHome}>
                 <div className="pokemon-logo" style={{ backgroundImage: `url(${logo})` }}></div>
             </div>
 
