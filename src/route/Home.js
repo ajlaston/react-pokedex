@@ -51,14 +51,6 @@ function Home() {
         });
     }
 
-    //if at bottom of page, page updates with more pokemon
-    const handleScroll = (e) => {
-        if (window.innerHeight + document.documentElement.scrollTop === document.body.scrollHeight) {
-            
-            //setLoading(true);
-        }
-    }
-
     const endOfPage = () => {
         setPage(page + 20);
     }
@@ -72,7 +64,7 @@ function Home() {
 
     React.useEffect(() => {
         //the code commented below resets the local storage for all pokemon
-        DexApi.storage.reset();
+        //DexApi.storage.reset();
 
         onLoad();
 
