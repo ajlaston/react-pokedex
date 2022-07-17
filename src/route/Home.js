@@ -51,6 +51,7 @@ function Home() {
         });
     }
 
+    //changes the page to get data at bottom of page
     const endOfPage = () => {
         setPage(page + 20);
     }
