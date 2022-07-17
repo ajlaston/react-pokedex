@@ -22,7 +22,7 @@ function Home() {
     const ctx = useContext(PokemonContext);
     const { setFetchedData } = ctx.details;
     const { homeDetails } = ctx.home;
-    const { setDisplay, display } = ctx.captureForm;
+    const { setDisplay} = ctx.captureForm;
 
     const [page, setPage] = React.useState(1);
     const [dexData, setDexData] = React.useState([]);

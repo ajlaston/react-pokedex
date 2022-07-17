@@ -1,8 +1,8 @@
 import React from "react";
-import "../route/Details.css";
 import Loader from "./Loader";
 import { PokemonContext } from "../PokeContext";
 import DexApi from "../DexAPI";
+import "../route/Details.css";
 import "./DetailCard.css"
 
 
@@ -32,7 +32,7 @@ function DetailCard() {
         if (!pokemon) {
             DexApi.getPokemon(query, setLoading).then(res => {
                 setFetchedData(res);
-                setLoading(false);
+                //setLoading(false);
             })
         } else {
             setDetailData(pokemon);
@@ -101,6 +101,7 @@ function DetailCard() {
         <div className="detail-component">
             {loading ?
                 <Loader dev={true}/>
+        
 
                 :
 

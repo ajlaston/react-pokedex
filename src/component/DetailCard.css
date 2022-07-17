@@ -7,3 +7,11 @@
     align-items: center;
     border-radius: 38px 38px 0px 0px;
 }
+
+.open-form-btn, .about, .base-stats {
+    width: 300px;
+}
+
+.capture-info {
+    width: 300px;
+}
