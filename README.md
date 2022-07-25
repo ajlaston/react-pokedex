@@ -2,7 +2,7 @@
 
 Scroll through the pokedex, click on the pokemon and capture it. [Create React App](https://github.com/facebook/create-react-app).
 
-## Click here for demo: https://react-pokedex-sam.herokuapp.com/
+## Click here for the demo: https://react-pokedex-sam.herokuapp.com/
 
 ## Install instructions
 
