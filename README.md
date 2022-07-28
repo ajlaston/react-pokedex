@@ -1,6 +1,6 @@
 # PokeDex built with React
 
-Scroll through the pokedex, click on the pokemon and capture it. [Create React App](https://github.com/facebook/create-react-app).
+Scroll through the pokedex, click on the pokemon and capture it.
 
 ## Click here for the demo: https://react-pokedex-sam.netlify.app/
 
